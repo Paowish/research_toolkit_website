@@ -1,0 +1,55 @@
+// English (en)
+const translations = {
+en: {
+    favorites: "Favorites",
+    myProgress: "My Progress", 
+    logout: "Logout",
+    welcomeBadge: "Filipino 107 | Innovative Teaching",
+    welcomeBack: "Welcome Back",
+    welcomeDesc: "Continue your study of AI tools for innovative teaching of Filipino.",
+    ofText: "of",
+    completedText: "tutorials completed",
+    streakLabel: "Learning Streak",
+    daysLabel: "days",
+    searchPlaceholder: "Search AI tools... (e.g., Gemini, Copilot)",
+    filterAll: "All Tools",
+    filterChat: "Chatbots",
+    filterWriting: "Writing",
+    filterResearch: "Research",
+    filterFavorites: "Favorites",
+    quote: '"Technology is a tool, but the teacher brings learning to life."',
+    quoteAuthor: "- Filipino 107 Research Group",
+    modalTitle: "Your Learning Progress",
+    modalCompleted: "Completed Tutorials:",
+    modalInProgress: "Currently Studying:",
+    modalFavorites: "Favorite Tools:",
+    completedTitle: "Completed Tutorials"
+},
+
+// Filipino (fil)
+fil: {
+    favorites: "Mga Paborito",
+    myProgress: "Aking Progreso",
+    logout: "Lumabas", 
+    welcomeBadge: "Filipino 107 | Inobatibong Pagtuturo",
+    welcomeBack: "Maligayang Pagbabalik",
+    welcomeDesc: "Ipagpatuloy ang iyong pag-aaral ng AI tools para sa inobatibong pagtuturo ng Filipino.",
+    ofText: "ng",
+    completedText: "tutorial ang natapos",
+    streakLabel: "Sunod-sunod na Araw",
+    daysLabel: "araw",
+    searchPlaceholder: "Maghanap ng AI tools... (hal. Gemini, Copilot)",
+    filterAll: "Lahat",
+    filterChat: "Chatbots",
+    filterWriting: "Pagsulat",
+    filterResearch: "Pananaliksik",
+    filterFavorites: "Mga Paborito",
+    quote: '"Ang teknolohiya ay kasangkapan, ngunit ang guro ang siyang nagbibigay-buhay sa pagkatuto."',
+    quoteAuthor: "- Filipino 107 Research Group",
+    modalTitle: "Iyong Progreso sa Pag-aaral",
+    modalCompleted: "Natapos na Tutorial:",
+    modalInProgress: "Kasalukuyang Pinag-aaralan:",
+    modalFavorites: "Mga Paboritong Tool:",
+    completedTitle: "Mga Natapos na Tutorial"
+}
+};

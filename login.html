@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="icon" type="image/png" href="/assets/images/TSU Logo.png" />
+    <title>Login - AI Instructional Toolkit | Filipino 107 - TSU</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body class="login-pro-body">
+    <div class="login-pro-container">
+        <div class="login-pro-card">
+            <div class="login-pro-left">
+                <div class="login-brand animate-fade-up">
+                    <img src="assets/images/COE Logo.png" alt="COE Logo"
+                        class="login-tsu-logo hover-scale animate-float"
+                        onerror="this.src='https://placehold.co/80x80/8B0000/F4B400?text=COE'">
+                    <h2 id="universityName">Tarlac State University</h2>
+                    <span class="pro-badge-small" id="toolkitBadge">AI Instructional Toolkit</span>
+                    <p class="course-badge" id="courseBadge">Filipino 107 | Inobatibong Pagtuturo</p>
+                </div>
+                <div class="login-quote animate-fade-up" style="animation-delay: 0.2s;">
+                    <i class="fas fa-quote-left animate-float"></i>
+                    <p id="quoteText">Technology is a tool, but the teacher brings learning to life</p>
+                    <span id="quoteAuthor">- Filipino 107 Research Group</span>
+                </div>
+                <div class="login-features-list stagger-children">
+                    <div><i class="fas fa-check-circle"></i> <span id="feature1Text">10 AI Tools for Filipino</span>
+                    </div>
+                    <div><i class="fas fa-check-circle"></i> <span id="feature2Text">Video Tutorials in Filipino</span>
+                    </div>
+                    <div><i class="fas fa-check-circle"></i> <span id="feature3Text">Innovative Teaching
+                            Strategies</span></div>
+                </div>
+            </div>
+            <div class="login-pro-right">
+                <div class="login-header-pro animate-fade-right">
+                    <h1 id="welcomeText">Welcome</h1>
+                    <p id="subtitleText">Login to access your AI Instructional Toolkit</p>
+                </div>
+
+                <form id="loginForm" class="login-form-pro">
+                    <div class="input-group-pro animate-fade-right" style="animation-delay: 0.1s;">
+                        <label><i class="fas fa-envelope"></i> <span id="emailLabel">Group Email</span></label>
+                        <input type="email" id="email" placeholder="Enter your email" required autocomplete="off"
+                            class="hover-lift">
+                    </div>
+
+                    <div class="input-group-pro animate-fade-right" style="animation-delay: 0.2s;">
+                        <label><i class="fas fa-lock"></i> <span id="passwordLabel">Password</span></label>
+                        <input type="password" id="password" placeholder="Enter your password" required
+                            class="hover-lift">
+                        <span class="toggle-password" onclick="togglePassword()">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+
+                    <div class="login-options animate-fade-right" style="animation-delay: 0.3s;">
+                        <label class="checkbox-label hover-scale">
+                            <input type="checkbox" id="rememberMe">
+                            <span id="rememberText">Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-link hover-scale" id="forgotText">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="login-submit-btn hover-scale animate-glow" id="loginBtn"
+                        style="animation-delay: 0.4s;">
+                        <span id="loginBtnText">Login</span> <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <div id="errorMsg" class="error-message-pro"></div>
+                </form>
+
+                <div class="login-footer-pro animate-fade-up" style="animation-delay: 0.5s;">
+                    <p id="footerText">⚠️ For authorized Filipino 107 research group members only</p>
+                    <small id="footerSmallText">Tarlac State University - College of Education | Filipino 107</small>
+                </div>
+
+                <div class="language-selector-footer animate-fade-up" style="animation-delay: 0.6s;">
+                    <button id="langToggleLogin" class="lang-toggle-small hover-scale">
+                        <i class="fas fa-globe"></i> <span id="langText">Filipino</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== TRANSLATIONS ==========
+        const loginTranslations = {
+            en: {
+                langToggle: "Filipino",
+                universityName: "Tarlac State University",
+                toolkitBadge: "AI Instructional Toolkit",
+                courseBadge: "Filipino 107 | Innovative Teaching",
+                quote: "Technology is a tool, but the teacher brings learning to life",
+                quoteAuthor: "- Filipino 107 Research Group",
+                feature1: "10 AI Tools for Filipino",
+                feature2: "Video Tutorials in Filipino",
+                feature3: "Innovative Teaching Strategies",
+                welcome: "Welcome",
+                subtitle: "Login to access your AI Instructional Toolkit",
+                emailLabel: "Group Email",
+                passwordLabel: "Password",
+                emailPlaceholder: "Enter your email",
+                passwordPlaceholder: "Enter your password",
+                remember: "Remember me",
+                forgot: "Forgot password?",
+                loginBtn: "Login",
+                footer: "⚠️ For authorized Filipino 107 research group members only",
+                footerSmall: "Tarlac State University - College of Education | Filipino 107",
+                loginError: "Invalid email or password. Please try again."
+            },
+            fil: {
+                langToggle: "English",
+                universityName: "Tarlac State University",
+                toolkitBadge: "AI Instructional Toolkit",
+                courseBadge: "Filipino 107 | Inobatibong Pagtuturo",
+                quote: "Ang teknolohiya ay kasangkapan, ngunit ang guro ang siyang nagbibigay-buhay sa pagkatuto",
+                quoteAuthor: "- Filipino 107 Research Group",
+                feature1: "10 AI Kasangkapan para sa Filipino",
+                feature2: "Video Tutorial sa Wikang Filipino",
+                feature3: "Inobatibong Estratehiya sa Pagtuturo",
+                welcome: "Maligayang Pagdating",
+                subtitle: "Mag-login para ma-access ang AI Instructional Toolkit",
+                emailLabel: "Email ng Grupo",
+                passwordLabel: "Password",
+                emailPlaceholder: "Ilagay ang iyong email",
+                passwordPlaceholder: "Ilagay ang iyong password",
+                remember: "Tandaan ako",
+                forgot: "Nakalimutan ang password?",
+                loginBtn: "Mag-login",
+                footer: "⚠️ Para lamang sa awtorisadong miyembro ng Filipino 107 research group",
+                footerSmall: "Tarlac State University - Kolehiyo ng Edukasyon | Filipino 107",
+                loginError: "Mali ang email o password. Pakisubukang muli."
+            }
+        };
+
+        // Get current language from localStorage or default to 'fil'
+        let currentLang = localStorage.getItem("language") || "fil";
+
+        // Function to safely set text content
+        function setText(id, text) {
+            const element = document.getElementById(id);
+            if (element) element.textContent = text;
+        }
+
+        // Apply all translations
+        function applyTranslations() {
+            const t = loginTranslations[currentLang];
+            if (!t) return;
+
+            // Left side
+            setText("universityName", t.universityName);
+            setText("toolkitBadge", t.toolkitBadge);
+            setText("courseBadge", t.courseBadge);
+            setText("quoteText", t.quote);
+            setText("quoteAuthor", t.quoteAuthor);
+            setText("feature1Text", t.feature1);
+            setText("feature2Text", t.feature2);
+            setText("feature3Text", t.feature3);
+
+            // Right side
+            setText("welcomeText", t.welcome);
+            setText("subtitleText", t.subtitle);
+            setText("emailLabel", t.emailLabel);
+            setText("passwordLabel", t.passwordLabel);
+            setText("rememberText", t.remember);
+            setText("forgotText", t.forgot);
+            setText("loginBtnText", t.loginBtn);
+            setText("footerText", t.footer);
+            setText("footerSmallText", t.footerSmall);
+
+            // Placeholders
+            const emailInput = document.getElementById("email");
+            const passwordInput = document.getElementById("password");
+            if (emailInput) emailInput.placeholder = t.emailPlaceholder;
+            if (passwordInput) passwordInput.placeholder = t.passwordPlaceholder;
+
+            // Language toggle button text
+            setText("langText", t.langToggle);
+        }
+
+        // Initialize language toggle
+        function initLanguageToggle() {
+            const toggleBtn = document.getElementById("langToggleLogin");
+            if (toggleBtn) {
+                toggleBtn.addEventListener("click", function () {
+                    currentLang = currentLang === "en" ? "fil" : "en";
+                    localStorage.setItem("language", currentLang);
+                    applyTranslations();
+                });
+            }
+        }
+
+        // ========== LOGIN FUNCTIONALITY ==========
+        const VALID_EMAIL = "TalaAI@gmail.com";
+        const VALID_PASSWORD = "Fil107_Toolkit";
+
+        const loginForm = document.getElementById("loginForm");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const rememberCheckbox = document.getElementById("rememberMe");
+        const errorMsgDiv = document.getElementById("errorMsg");
+        const loginBtn = document.getElementById("loginBtn");
+
+        if (loginForm) {
+            loginForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                const rememberMe = rememberCheckbox.checked;
+
+                // Add loading animation to button
+                loginBtn.classList.add('loading');
+                loginBtn.disabled = true;
+
+                // Simulate slight delay for animation
+                setTimeout(() => {
+                    if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+                        localStorage.setItem("isLoggedIn", "true");
+                        localStorage.setItem("userEmail", email);
+
+                        if (rememberMe) {
+                            localStorage.setItem("rememberMe", "true");
+                        } else {
+                            localStorage.removeItem("rememberMe");
+                        }
+
+                        // Add success animation
+                        loginBtn.style.background = "#28a745";
+                        loginBtn.innerHTML = '<i class="fas fa-check"></i> Success!';
+
+                        setTimeout(() => {
+                            window.location.href = "dashboard.html";
+                        }, 500);
+                    } else {
+                        // Remove loading state
+                        loginBtn.classList.remove('loading');
+                        loginBtn.disabled = false;
+
+                        // Add shake animation to form
+                        const form = document.querySelector('.login-form-pro');
+                        form.classList.add('shake');
+                        setTimeout(() => {
+                            form.classList.remove('shake');
+                        }, 300);
+
+                        const errorMsg = loginTranslations[currentLang].loginError;
+                        errorMsgDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${errorMsg}`;
+                        errorMsgDiv.style.display = "flex";
+
+                        setTimeout(function () {
+                            errorMsgDiv.style.display = "none";
+                        }, 3000);
+
+                        passwordInput.value = "";
+                        passwordInput.style.borderColor = "#dc3545";
+                        setTimeout(() => {
+                            passwordInput.style.borderColor = "";
+                        }, 300);
+                    }
+                }, 500);
+            });
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById("password");
+            const icon = document.querySelector(".toggle-password i");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        // Auto-login if "Remember Me" was checked
+        if (localStorage.getItem("rememberMe") === "true" && localStorage.getItem("isLoggedIn") === "true") {
+            window.location.href = "dashboard.html";
+        }
+
+        // Add floating animation to icons on hover
+        document.querySelectorAll('.login-features-list i').forEach(icon => {
+            icon.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.2)';
+                this.style.transition = 'transform 0.3s';
+            });
+            icon.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add input focus animations
+        const inputs = document.querySelectorAll('.input-group-pro input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function () {
+                this.parentElement.querySelector('label i').style.color = '#F4B400';
+                this.parentElement.querySelector('label i').style.transform = 'scale(1.1)';
+            });
+            input.addEventListener('blur', function () {
+                this.parentElement.querySelector('label i').style.color = '';
+                this.parentElement.querySelector('label i').style.transform = 'scale(1)';
+            });
+        });
+
+        // Initialize everything
+        applyTranslations();
+        initLanguageToggle();
+    </script>
+</body>
+
+</html>

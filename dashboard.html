@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="tl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <link rel="icon" type="image/png" href="/assets/images/TSU Logo.png" />
+    <title>Dashboard | AI Integrated Instructional Toolkit | Filipino 107 - TSU</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <script src="check-auth.js"></script>
+
+    <!-- Dashboard Navbar -->
+    <nav class="dashboard-nav animate-slide-up">
+        <div class="nav-container">
+            <div class="logo">
+                <img class="school-logo animate-float" src="assets/images/COE Logo.png" alt="COE Logo">
+                <div class="tsu-text">
+                    <span>TARLAC STATE UNIVERSITY</span>
+                    <span>Kolehiyo ng Edukasyon</span>
+                </div>
+                <div class="logo-divider"></div>
+                <i class="fas fa-robot animate-pulse"></i>
+                <span class="brand-text">AI Toolkit <span class="pro-badge">Filipino 107</span></span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-right" id="navRight">
+                <button id="langToggle" class="lang-toggle-btn hover-scale">
+                    <i class="fas fa-globe"></i> <span id="langToggleText">English</span>
+                </button>
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="user-menu">
+                    <span id="userGreeting"></span>
+                    <div class="user-avatar">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="#" id="viewFavorites"><i class="fas fa-star"></i> <span id="favoritesText">Mga
+                                Paborito</span></a>
+                        <a href="#" id="viewProgress"><i class="fas fa-chart-line"></i> <span id="progressText">Aking
+                                Progreso</span></a>
+                        <hr>
+                        <a href="logout.html"><i class="fas fa-sign-out-alt"></i> <span
+                                id="logoutText">Lumabas</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-pro-container">
+        <!-- University Header -->
+        <div class="university-header scroll-reveal">
+            <div class="uni-logo-container">
+                <img src="assets/images/COE Logo.png" alt="TSU Logo" class="uni-logo hover-scale">
+                <div class="uni-info">
+                    <h2 class="uni-name">TARLAC STATE UNIVERSITY</h2>
+                    <p class="uni-college">KOLEHIYO NG EDUKASYON | College of Education</p>
+                    <p class="uni-course">Filipino 107 - Inobatibong Pagtuturo ng Filipino</p>
+                </div>
+                <div class="uni-badge animate-pulse">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Powered Learning</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Summary -->
+        <div class="stats-summary scroll-reveal">
+            <div class="stat-card">
+                <i class="fas fa-check-circle"></i>
+                <div class="stat-info">
+                    <span class="stat-value" id="completedCount">0</span>
+                    <span class="stat-label">Natapos na Tutorial</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <div class="stat-info">
+                    <span class="stat-value" id="favoritesCount">0</span>
+                    <span class="stat-label">Mga Paborito</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-fire"></i>
+                <div class="stat-info">
+                    <span class="stat-value" id="streakCount">0</span>
+                    <span class="stat-label">Sunod-sunod na Araw</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="search-section scroll-reveal">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Maghanap ng AI tools... (hal. AutoDraw, Testportal)">
+                <button class="search-clear" id="searchClear" style="display: none;">
+                    <i class="fas fa-times-circle"></i>
+                </button>
+            </div>
+            <div class="filter-buttons stagger-children">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th-large"></i> <span>Lahat ng Tool</span>
+                </button>
+                <button class="filter-btn" data-filter="sketch">
+                    <i class="fas fa-paintbrush"></i> <span>Sketch</span>
+                </button>
+                <button class="filter-btn" data-filter="assessment">
+                    <i class="fas fa-clipboard-list"></i> <span>Pagsusulit</span>
+                </button>
+                <button class="filter-btn" data-filter="portfolio">
+                    <i class="fas fa-folder-open"></i> <span>Portfolio</span>
+                </button>
+                <button class="filter-btn" data-filter="writing">
+                    <i class="fas fa-pen-fancy"></i> <span>Pagsulat</span>
+                </button>
+                <button class="filter-btn" data-filter="lesson">
+                    <i class="fas fa-chalkboard-user"></i> <span>Banghay Aralin</span>
+                </button>
+                <button class="filter-btn" data-filter="favorites">
+                    <i class="fas fa-heart"></i> <span>Mga Paborito</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="tools-grid-pro" id="toolsGrid">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading AI Tools...</p>
+            </div>
+        </div>
+
+        <!-- Motivational Quote Section -->
+        <div class="motivation-card scroll-reveal">
+            <div class="quote-icon">
+                <i class="fas fa-quote-left animate-float"></i>
+            </div>
+            <div class="quote-content">
+                <p id="quoteText">"Ang teknolohiya ay kasangkapan, ngunit ang guro ang siyang nagbibigay-buhay sa
+                    pagkatuto."</p>
+                <span id="quoteAuthorText">- Filipino 107 Research Group</span>
+            </div>
+            <div class="quote-refresh" id="refreshQuote">
+                <i class="fas fa-sync-alt hover-scale"></i>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <div class="fab-menu" id="fabMenu">
+            <button class="fab-main animate-pulse">
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="fab-options">
+                <button class="fab-option hover-scale" id="fabProgress">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progress</span>
+                </button>
+                <button class="fab-option hover-scale" id="fabFavorites">
+                    <i class="fas fa-star"></i>
+                    <span>Favorites</span>
+                </button>
+                <button class="fab-option hover-scale" id="fabSupport">
+                    <i class="fas fa-headset"></i>
+                    <span>Support</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal">
+        <div class="modal-content animate-fade-scale">
+            <div class="modal-header">
+                <h2><i class="fas fa-chart-line"></i> <span>Iyong Progreso sa Pag-aaral</span></h2>
+                <span class="close hover-scale">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="progress-stats">
+                    <div class="stat-circle">
+                        <canvas id="progressChart" width="150" height="150"></canvas>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="stat-details">
+                        <div class="stat-item">
+                            <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                            <span>Natapos na Tutorial:</span>
+                            <strong id="modalCompleted">0</strong><span>/9</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock" style="color: #F4B400;"></i>
+                            <span>Kasalukuyang Pinag-aaralan:</span>
+                            <strong id="modalInProgress">0</strong>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star" style="color: #F4B400;"></i>
+                            <span>Mga Paboritong Tool:</span>
+                            <strong id="modalFavorites">0</strong>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-fire" style="color: #ff6b6b;"></i>
+                            <span>Sunod-sunod na Araw:</span>
+                            <strong id="modalStreak">0</strong> <span>araw</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="completed-section">
+                    <h4><i class="fas fa-trophy"></i> <span>Mga Natapos na Tutorial</span></h4>
+                    <div class="completed-list" id="completedList">
+                        <p class="empty-message">Wala pang natapos na tutorial. Simulan na ang pag-aaral!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-pro">
+        <div class="footer-content">
+            <div class="footer-logo scroll-reveal">
+                <i class="fas fa-robot animate-float"></i>
+                <span>AI Integrated Instructional Toolkit</span>
+                <p>Filipino 107 - Inobatibong Pagtuturo ng Filipino</p>
+                <p class="mt-1">Tarlac State University | KOLEHIYO NG EDUKASYON</p>
+                <p class="mt-1"><small>Isang proyektong pananaliksik para sa inobatibong pagtuturo ng Filipino</small>
+                </p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group scroll-reveal">
+                    <h4>Menu</h4>
+                    <a href="index.html#features">Mga Tampok</a>
+                    <a href="index.html#tools">AI Kasangkapan</a>
+                    <a href="login.html">Mag-login</a>
+                </div>
+                <div class="link-group scroll-reveal">
+                    <h4>Suporta</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Makipag-ugnayan</a>
+                </div>
+                <div class="link-group scroll-reveal">
+                    <h4>Legal</h4>
+                    <a href="#">Patakaran sa Privacy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom scroll-reveal">
+            <p>© 2024 AI Integrated Instructional Toolkit | Filipino 107 - Tarlac State University</p>
+            <p><small>KOLEHIYO NG EDUKASYON | College of Education</small></p>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // ========== AI TOOLS DATA - EACH ID MATCHES THE HTML FILE NAME ==========
+        const toolsData = [
+            // SKETCH CATEGORY
+            {
+                id: "autodraw",
+                name: "AutoDraw",
+                icon: "fas fa-paintbrush",
+                color: "#FF6B35",
+                category: "sketch",
+                categoryName: "Sketch",
+                description: "Gumuhit ng sketch at graphic organizer para sa pagtuturo",
+                useInTeaching: "Ilarawan ang tagpuan ng akda, gumawa ng story sequence",
+                completed: false,
+                favorite: false
+            },
+            {
+                id: "graphic-organizer",
+                name: "Graphic Organizer",
+                icon: "fas fa-project-diagram",
+                color: "#17A2B8",
+                category: "sketch",
+                categoryName: "Sketch",
+                description: "Lumikha ng concept map at visual diagrams",
+                useInTeaching: "Gumawa ng graphic organizer para sa aralin",
+                completed: false,
+                favorite: false
+            },
+
+            // ASSESSMENT CATEGORY
+            {
+                id: "testportal",
+                name: "Testportal",
+                icon: "fas fa-clipboard-list",
+                color: "#28A745",
+                category: "assessment",
+                categoryName: "Pagsusulit",
+                description: "Lumikha ng online pagsusulit at assessment",
+                useInTeaching: "Gumawa ng multiple choice, true/false, essay questions",
+                completed: false,
+                favorite: false
+            },
+
+            // PORTFOLIO CATEGORY
+            {
+                id: "visme",
+                name: "Visme",
+                icon: "fas fa-chart-pie",
+                color: "#4B0082",
+                category: "portfolio",
+                categoryName: "Portfolio",
+                description: "Lumikha ng digital portfolio at presentation",
+                useInTeaching: "Gumawa ng portfolio ng mga likhang sining ng mag-aaral",
+                completed: false,
+                favorite: false
+            },
+            {
+                id: "framer",
+                name: "Framer",
+                icon: "fas fa-layer-group",
+                color: "#0055FF",
+                category: "portfolio",
+                categoryName: "Portfolio",
+                description: "Magdisenyo ng website at online portfolio",
+                useInTeaching: "Gumawa ng website para sa mga proyekto ng mag-aaral",
+                completed: false,
+                favorite: false
+            },
+
+            // WRITING CATEGORY
+            {
+                id: "talaarawan",
+                name: "Talaarawan",
+                icon: "fas fa-book-journal",
+                color: "#E83E8C",
+                category: "writing",
+                categoryName: "Pagsulat",
+                description: "Digital na talaarawan para sa repleksyon",
+                useInTeaching: "Gumawa ng digital journal para sa repleksyon ng mag-aaral",
+                completed: false,
+                favorite: false
+            },
+            {
+                id: "lakbay-sanaysay",
+                name: "Lakbay-Sanaysay",
+                icon: "fas fa-map-marked-alt",
+                color: "#00A4EF",
+                category: "writing",
+                categoryName: "Pagsulat",
+                description: "Kasangkapan sa pagsulat ng travel essay",
+                useInTeaching: "Gumawa ng travel essay tungkol sa mga lugar sa Pilipinas",
+                completed: false,
+                favorite: false
+            },
+
+            // LESSON PLAN CATEGORY
+            {
+                id: "banghay-aralin",
+                name: "Banghay ng Pagtuturo",
+                icon: "fas fa-chalkboard-user",
+                color: "#FF8C00",
+                category: "lesson",
+                categoryName: "Banghay Aralin",
+                description: "Lumikha ng detalyadong lesson plan",
+                useInTeaching: "Gumawa ng step-by-step lesson plan para sa Filipino",
+                completed: false,
+                favorite: false
+            },
+            {
+                id: "modyul",
+                name: "Module Creator",
+                icon: "fas fa-book-open",
+                color: "#8B0000",
+                category: "lesson",
+                categoryName: "Banghay Aralin",
+                description: "Lumikha ng learning modules",
+                useInTeaching: "Gumawa ng self-learning modules para sa Filipino",
+                completed: false,
+                favorite: false
+            }
+        ];
+
+        let currentFilter = "all";
+        let currentSearch = "";
+
+        function loadSavedData() {
+            const savedProgress = localStorage.getItem("toolProgress");
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                toolsData.forEach(tool => {
+                    if (progress[tool.id]) {
+                        tool.completed = progress[tool.id].completed || false;
+                        tool.favorite = progress[tool.id].favorite || false;
+                    }
+                });
+            }
+        }
+
+        function saveProgress() {
+            const progress = {};
+            toolsData.forEach(tool => {
+                progress[tool.id] = { completed: tool.completed, favorite: tool.favorite };
+            });
+            localStorage.setItem("toolProgress", JSON.stringify(progress));
+            localStorage.setItem("favorites", JSON.stringify(toolsData.filter(t => t.favorite).map(t => t.id)));
+        }
+
+        function toggleFavorite(toolId) {
+            const tool = toolsData.find(t => t.id === toolId);
+            if (tool) {
+                tool.favorite = !tool.favorite;
+                saveProgress();
+                renderTools();
+                updateStats();
+            }
+        }
+
+        function updateStreak() {
+            const lastLogin = localStorage.getItem("lastLogin");
+            const today = new Date().toDateString();
+            let streak = parseInt(localStorage.getItem("streak")) || 0;
+            if (lastLogin !== today) {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                streak = lastLogin === yesterday.toDateString() ? streak + 1 : 1;
+                localStorage.setItem("lastLogin", today);
+                localStorage.setItem("streak", streak);
+            }
+            document.getElementById("streakCount").textContent = streak;
+        }
+
+        function updateStats() {
+            const completedCount = toolsData.filter(t => t.completed).length;
+            const favoritesCount = toolsData.filter(t => t.favorite).length;
+            document.getElementById("completedCount").textContent = completedCount;
+            document.getElementById("favoritesCount").textContent = favoritesCount;
+            document.getElementById("progressPercent").textContent = `${Math.round((completedCount / toolsData.length) * 100)}%`;
+        }
+
+        function renderTools() {
+            const grid = document.getElementById("toolsGrid");
+            if (!grid) return;
+
+            let filteredTools = [...toolsData];
+
+            if (currentFilter === "favorites") {
+                filteredTools = filteredTools.filter(t => t.favorite);
+            } else if (currentFilter !== "all") {
+                filteredTools = filteredTools.filter(t => t.category === currentFilter);
+            }
+
+            if (currentSearch) {
+                const searchLower = currentSearch.toLowerCase();
+                filteredTools = filteredTools.filter(t =>
+                    t.name.toLowerCase().includes(searchLower) ||
+                    t.description.toLowerCase().includes(searchLower)
+                );
+            }
+
+            if (filteredTools.length === 0) {
+                grid.innerHTML = `<div class="no-results"><i class="fas fa-search fa-3x"></i><h3>Walang nakitang tool</h3><p>Subukan ang ibang search term o filter</p></div>`;
+                return;
+            }
+
+            grid.innerHTML = filteredTools.map(tool => `
+        <div class="tool-card-pro">
+            <div class="tool-header-pro">
+                <div class="tool-icon-pro" style="background: ${tool.color}20;">
+                    <i class="${tool.icon}" style="color: ${tool.color};"></i>
+                </div>
+                <button class="favorite-btn" onclick="event.preventDefault(); toggleFavorite('${tool.id}')">
+                    <i class="fas fa-heart" style="color: ${tool.favorite ? '#ff4757' : '#ccc'};"></i>
+                </button>
+            </div>
+            <h3>${tool.name}</h3>
+            <span class="tool-category">${tool.categoryName}</span>
+            <p class="tool-description">${tool.description}</p>
+            <div class="teaching-use"><i class="fas fa-chalkboard"></i><span>Gamit sa Pagtuturo: ${tool.useInTeaching}</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width: ${tool.completed ? '100%' : '0%'}"></div></div>
+            ${tool.completed ? '<div class="completed-badge"><i class="fas fa-check-circle"></i> Tapos na!</div>' : ''}
+            <a href="tools/${tool.id}.html" class="view-tutorial-btn">Tingnan ang Tutorial →</a>
+        </div>
+    `).join("");
+        }
+
+        function showProgressModal() {
+            const modal = document.getElementById("progressModal");
+            if (!modal) return;
+            const completed = toolsData.filter(t => t.completed);
+            document.getElementById("modalCompleted").textContent = completed.length;
+            document.getElementById("modalInProgress").textContent = toolsData.filter(t => !t.completed).length;
+            document.getElementById("modalFavorites").textContent = toolsData.filter(t => t.favorite).length;
+            document.getElementById("modalStreak").textContent = localStorage.getItem("streak") || 0;
+            document.getElementById("progressPercent").textContent = `${Math.round((completed.length / toolsData.length) * 100)}%`;
+            const completedList = document.getElementById("completedList");
+            if (completed.length === 0) {
+                completedList.innerHTML = "<p class='empty-message'>Wala pang natapos na tutorial. Simulan na ang pag-aaral!</p>";
+            } else {
+                completedList.innerHTML = completed.map(t => `<div class="completed-item"><i class="${t.icon}" style="color: ${t.color};"></i><span>${t.name}</span><i class="fas fa-check-circle" style="color: #28a745;"></i></div>`).join("");
+            }
+            modal.style.display = "flex";
+        }
+
+        function initDashboard() {
+            loadSavedData();
+            renderTools();
+            updateStats();
+            updateStreak();
+
+            const userEmail = localStorage.getItem("userEmail");
+            if (userEmail) document.getElementById("userGreeting").textContent = `Hi, ${userEmail.split('@')[0]}`;
+
+            const searchInput = document.getElementById("searchInput");
+            const searchClear = document.getElementById("searchClear");
+            if (searchInput) {
+                searchInput.addEventListener("input", (e) => {
+                    currentSearch = e.target.value;
+                    if (searchClear) searchClear.style.display = currentSearch ? "flex" : "none";
+                    renderTools();
+                });
+            }
+            if (searchClear) {
+                searchClear.addEventListener("click", () => {
+                    searchInput.value = "";
+                    currentSearch = "";
+                    searchClear.style.display = "none";
+                    renderTools();
+                });
+            }
+
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    currentFilter = btn.dataset.filter;
+                    renderTools();
+                });
+            });
+
+            document.getElementById("viewProgress")?.addEventListener("click", (e) => { e.preventDefault(); showProgressModal(); });
+            document.getElementById("fabProgress")?.addEventListener("click", () => showProgressModal());
+            document.querySelector("#progressModal .close")?.addEventListener("click", () => document.getElementById("progressModal").style.display = "none");
+            window.onclick = (e) => { if (e.target === document.getElementById("progressModal")) document.getElementById("progressModal").style.display = "none"; };
+
+            const refreshQuote = document.getElementById("refreshQuote");
+            const quotes = [
+                { text: '"Ang teknolohiya ay kasangkapan, ngunit ang guro ang siyang nagbibigay-buhay sa pagkatuto."', author: "- Filipino 107 Research Group" },
+                { text: '"Ang mahusay na guro ay hindi lamang nagtuturo, kundi patuloy na natututo."', author: "- Filipino 107" }
+            ];
+            if (refreshQuote) {
+                refreshQuote.addEventListener("click", () => {
+                    const random = quotes[Math.floor(Math.random() * quotes.length)];
+                    document.getElementById("quoteText").textContent = random.text;
+                    document.getElementById("quoteAuthorText").textContent = random.author;
+                });
+            }
+
+            const scrollBtn = document.getElementById("scrollTopBtn");
+            window.addEventListener("scroll", () => scrollBtn?.classList.toggle("show", window.scrollY > 300));
+            scrollBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+            const fabMain = document.querySelector(".fab-main");
+            const fabMenu = document.querySelector(".fab-menu");
+            if (fabMain && fabMenu) {
+                fabMain.addEventListener("click", () => fabMenu.classList.toggle("active"));
+                document.addEventListener("click", (e) => { if (!fabMenu.contains(e.target)) fabMenu.classList.remove("active"); });
+            }
+            document.getElementById("fabFavorites")?.addEventListener("click", () => { document.querySelector('[data-filter="favorites"]').click(); fabMenu?.classList.remove("active"); });
+            document.getElementById("fabSupport")?.addEventListener("click", () => alert("Para sa suporta: support@tsu.edu.ph"));
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                const observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { el.classList.add('revealed'); observer.disconnect(); } });
+                observer.observe(el);
+            });
+        }
+
+        window.toggleFavorite = toggleFavorite;
+        window.renderTools = renderTools;
+        document.addEventListener("DOMContentLoaded", initDashboard);
+    </script>
+</body>
+
+</html>

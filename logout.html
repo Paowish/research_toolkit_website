@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/images/TSU Logo.png" />
+    <title>Logging out...</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="logout-body">
+    <div class="logout-container">
+        <div class="logout-card">
+            <h2>Logging out...</h2>
+            <p>Thank you for using Research Toolkit</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <script>
+        // Clear all localStorage data
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userEmail");
+        
+        // Redirect after 2 seconds
+        setTimeout(function() {
+            window.location.href = "login.html";
+        }, 2000);
+    </script>
+</body>
+</html>
