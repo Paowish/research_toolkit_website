@@ -10,12 +10,526 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========== GLOBAL SMOOTH TRANSITIONS ========== */
+        * {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Additional powerful styles for login left side */
+        .login-pro-left {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #8B0000 0%, #6B0000 50%, #4A0000 100%);
+            transition: all 0.4s ease;
+        }
+
+        /* TSU Building Image as HTML element - positioned absolutely */
+        .tsu-building-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            opacity: 0.25;
+            z-index: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .login-pro-left:hover .tsu-building-img {
+            opacity: 0.4;
+            transform: scale(1.02);
+        }
+
+        /* Animated background pattern */
+        .login-pro-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><path fill="%23F4B400" d="M20,20 L30,20 L25,30 Z M70,70 L80,70 L75,80 Z M45,45 L55,45 L50,55 Z"/><circle cx="85" cy="15" r="5"/><circle cx="15" cy="85" r="8"/></svg>');
+            background-repeat: repeat;
+            animation: slowMove 40s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes slowMove {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 100px 100px;
+            }
+        }
+
+        /* Glowing orb effect */
+        .login-pro-left::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(244, 180, 0, 0.08) 0%, transparent 70%);
+            animation: pulseGlow 8s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+
+        /* Content on top of animation */
+        .login-pro-left>*:not(.tsu-building-img) {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ========== LOGO HOVER ========== */
+        .login-tsu-logo {
+            width: 100px !important;
+            height: 100px !important;
+            object-fit: contain !important;
+            background: white;
+            border-radius: 50%;
+            padding: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .login-tsu-logo:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========== BRAND TITLE HOVER ========== */
+        .login-brand h2 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .login-brand h2:hover {
+            text-shadow: 2px 2px 8px rgba(244, 180, 0, 0.5);
+            letter-spacing: 1px;
+        }
+
+        /* ========== BADGES HOVER ========== */
+        .pro-badge-small {
+            background: linear-gradient(135deg, #F4B400, #FFD54F);
+            padding: 4px 12px;
+            border-radius: 25px;
+            font-size: 0.7rem;
+            color: #8B0000;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .pro-badge-small:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(244, 180, 0, 0.3);
+            background: linear-gradient(135deg, #FFD54F, #F4B400);
+        }
+
+        .course-badge {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .course-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== QUOTE SECTION HOVER ========== */
+        .login-quote {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(244, 180, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .login-quote:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(244, 180, 0, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-quote i {
+            font-size: 2rem;
+            opacity: 0.7;
+            margin-bottom: 0.8rem;
+            color: #F4B400;
+            transition: all 0.3s ease;
+        }
+
+        .login-quote:hover i {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .login-quote p {
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.5;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .login-quote:hover p {
+            transform: translateX(3px);
+        }
+
+        .login-quote span {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            display: block;
+            margin-top: 0.8rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .login-quote:hover span {
+            opacity: 1;
+            letter-spacing: 2px;
+        }
+
+        /* ========== FEATURES LIST HOVER ========== */
+        .login-features-list {
+            margin-top: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .login-features-list:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        .login-features-list div {
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .login-features-list div:hover {
+            background: rgba(244, 180, 0, 0.2);
+            transform: translateX(8px);
+        }
+
+        .login-features-list i {
+            color: #F4B400;
+            font-size: 1rem;
+            width: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .login-features-list div:hover i {
+            transform: scale(1.2);
+            color: #FFD54F;
+        }
+
+        .login-features-list span {
+            transition: all 0.3s ease;
+        }
+
+        .login-features-list div:hover span {
+            font-weight: 600;
+        }
+
+        /* ========== RIGHT SIDE HOVER EFFECTS ========== */
+
+        /* Welcome Header */
+        .login-header-pro h1 {
+            transition: all 0.3s ease;
+        }
+
+        .login-header-pro h1:hover {
+            background: linear-gradient(135deg, #8B0000, #F4B400);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transform: scale(1.02);
+        }
+
+        /* Input Fields */
+        .input-group-pro input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 12px;
+            background: var(--bg-primary, white);
+            color: var(--text-primary, #333);
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .input-group-pro input:hover {
+            border-color: #F4B400;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 180, 0, 0.1);
+        }
+
+        .input-group-pro input:focus {
+            outline: none;
+            border-color: #F4B400;
+            box-shadow: 0 0 0 3px rgba(244, 180, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Labels */
+        .input-group-pro label {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .input-group-pro label:hover {
+            color: #F4B400;
+            transform: translateX(3px);
+        }
+
+        .input-group-pro label i {
+            transition: all 0.3s ease;
+        }
+
+        .input-group-pro label:hover i {
+            transform: scale(1.2);
+            color: #F4B400;
+        }
+
+        /* Toggle Password */
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            cursor: pointer;
+            color: var(--text-secondary, #999);
+            transition: all 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            color: #F4B400;
+            transform: scale(1.1);
+        }
+
+        /* Checkbox */
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label:hover {
+            transform: translateX(3px);
+        }
+
+        .checkbox-label input {
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label input:hover {
+            transform: scale(1.1);
+            accent-color: #F4B400;
+        }
+
+        /* Forgot Link */
+        .forgot-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .forgot-link:hover {
+            color: #F4B400 !important;
+            transform: translateX(-3px);
+        }
+
+        .forgot-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #F4B400;
+            transition: width 0.3s ease;
+        }
+
+        .forgot-link:hover::after {
+            width: 100%;
+        }
+
+        /* Login Button */
+        .login-submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #8B0000;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .login-submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-submit-btn:hover {
+            background: linear-gradient(135deg, #8B0000, #F4B400);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 0, 0, 0.3);
+        }
+
+        .login-submit-btn i {
+            transition: all 0.3s ease;
+        }
+
+        .login-submit-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Language Toggle Button */
+        .lang-toggle-small {
+            background: linear-gradient(135deg, #F4B400, #FFD54F);
+            border: none;
+            color: #8B0000;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .lang-toggle-small:hover {
+            background: linear-gradient(135deg, #FFD54F, #F4B400);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(244, 180, 0, 0.3);
+        }
+
+        .lang-toggle-small i {
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle-small:hover i {
+            transform: rotate(15deg);
+        }
+
+        /* Footer Text */
+        .login-footer-pro p,
+        .login-footer-pro small {
+            transition: all 0.3s ease;
+        }
+
+        .login-footer-pro:hover p {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .login-quote p {
+                font-size: 0.85rem;
+            }
+
+            .login-features-list div {
+                font-size: 0.75rem;
+                padding: 5px 8px;
+            }
+
+            .login-brand h2 {
+                font-size: 1.1rem;
+            }
+
+            .login-tsu-logo {
+                width: 70px !important;
+                height: 70px !important;
+            }
+        }
+    </style>
 </head>
 
 <body class="login-pro-body">
     <div class="login-pro-container">
         <div class="login-pro-card">
             <div class="login-pro-left">
+                <!-- TSU Building Image as HTML IMG element -->
+                <img src="assets/images/COED_Building_Bottom.png" alt="TSU COED Building" class="tsu-building-img"
+                    onerror="this.style.display='none'">
+
                 <div class="login-brand animate-fade-up">
                     <img src="assets/images/COE Logo.png" alt="COE Logo"
                         class="login-tsu-logo hover-scale animate-float"
@@ -24,17 +538,22 @@
                     <span class="pro-badge-small" id="toolkitBadge">AI Instructional Toolkit</span>
                     <p class="course-badge" id="courseBadge">Filipino 107 | Inobatibong Pagtuturo</p>
                 </div>
+
                 <div class="login-quote animate-fade-up" style="animation-delay: 0.2s;">
                     <i class="fas fa-quote-left animate-float"></i>
                     <p id="quoteText">Technology is a tool, but the teacher brings learning to life</p>
                     <span id="quoteAuthor">- Filipino 107 Research Group</span>
                 </div>
+
                 <div class="login-features-list stagger-children">
-                    <div><i class="fas fa-check-circle"></i> <span id="feature1Text">10 AI Tools for Filipino</span>
+                    <div style="position: relative; top: 3px;"><i class="fas fa-check-circle"></i> <span
+                            id="feature1Text">10 AI Tools for Filipino</span>
                     </div>
-                    <div><i class="fas fa-check-circle"></i> <span id="feature2Text">Video Tutorials in Filipino</span>
+                    <div style="position: relative; top: 3px;"><i class="fas fa-check-circle"></i> <span
+                            id="feature2Text">Video Tutorials in Filipino</span>
                     </div>
-                    <div><i class="fas fa-check-circle"></i> <span id="feature3Text">Innovative Teaching
+                    <div style="position: relative; top: 3px;"><i class="fas fa-check-circle"></i> <span
+                            id="feature3Text">Innovative Teaching
                             Strategies</span></div>
                 </div>
             </div>
@@ -155,7 +674,6 @@
             const t = loginTranslations[currentLang];
             if (!t) return;
 
-            // Left side
             setText("universityName", t.universityName);
             setText("toolkitBadge", t.toolkitBadge);
             setText("courseBadge", t.courseBadge);
@@ -164,8 +682,6 @@
             setText("feature1Text", t.feature1);
             setText("feature2Text", t.feature2);
             setText("feature3Text", t.feature3);
-
-            // Right side
             setText("welcomeText", t.welcome);
             setText("subtitleText", t.subtitle);
             setText("emailLabel", t.emailLabel);
@@ -176,13 +692,11 @@
             setText("footerText", t.footer);
             setText("footerSmallText", t.footerSmall);
 
-            // Placeholders
             const emailInput = document.getElementById("email");
             const passwordInput = document.getElementById("password");
             if (emailInput) emailInput.placeholder = t.emailPlaceholder;
             if (passwordInput) passwordInput.placeholder = t.passwordPlaceholder;
 
-            // Language toggle button text
             setText("langText", t.langToggle);
         }
 
@@ -217,11 +731,9 @@
                 const password = passwordInput.value;
                 const rememberMe = rememberCheckbox.checked;
 
-                // Add loading animation to button
                 loginBtn.classList.add('loading');
                 loginBtn.disabled = true;
 
-                // Simulate slight delay for animation
                 setTimeout(() => {
                     if (email === VALID_EMAIL && password === VALID_PASSWORD) {
                         localStorage.setItem("isLoggedIn", "true");
@@ -233,7 +745,6 @@
                             localStorage.removeItem("rememberMe");
                         }
 
-                        // Add success animation
                         loginBtn.style.background = "#28a745";
                         loginBtn.innerHTML = '<i class="fas fa-check"></i> Success!';
 
@@ -241,11 +752,9 @@
                             window.location.href = "dashboard.html";
                         }, 500);
                     } else {
-                        // Remove loading state
                         loginBtn.classList.remove('loading');
                         loginBtn.disabled = false;
 
-                        // Add shake animation to form
                         const form = document.querySelector('.login-form-pro');
                         form.classList.add('shake');
                         setTimeout(() => {

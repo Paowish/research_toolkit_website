@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="tl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Talaarawan Video Tutorials | AI Toolkit | Filipino 107 - TSU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .portfolio-nav {
+            background: #8B0000;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+            color: #F4B400;
+        }
+
+        .logo span {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #F4B400;
+            color: #8B0000;
+            transform: translateX(-5px);
+        }
+
+        .portfolio-header {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.08), rgba(244, 180, 0, 0.08));
+        }
+
+        .portfolio-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .portfolio-header h1 {
+            color: #F4B400;
+        }
+
+        .portfolio-header p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        body.dark-mode .portfolio-header p {
+            color: #b0b0b0;
+        }
+
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        body.dark-mode .video-card {
+            background: #0f3460;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            background: #000;
+            cursor: pointer;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .play-overlay:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .play-btn-large {
+            width: 70px;
+            height: 70px;
+            background: #F4B400;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-overlay:hover .play-btn-large {
+            transform: scale(1.1);
+        }
+
+        .play-btn-large i {
+            font-size: 2rem;
+            color: #8B0000;
+            margin-left: 5px;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .tool-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #8B0000, #F4B400);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .video-info h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .video-info h2 {
+            color: #F4B400;
+        }
+
+        .video-description {
+            color: #444;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        body.dark-mode .video-description {
+            color: #c0c0c0;
+        }
+
+        .footer {
+            background: #8B0000;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        body.dark-mode .footer {
+            background: #0f0f1a;
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #28a745;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .video-card {
+            animation: fadeInUp 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="portfolio-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>AI Instructional Toolkit | Filipino 107</span>
+            </div>
+            <button class="back-btn" onclick="window.location.href='/dashboard.html'">
+                <i class="fas fa-arrow-left"></i> Bumalik sa Dashboard
+            </button>
+        </div>
+    </nav>
+
+    <div class="portfolio-header">
+        <h1><i class="fas fa-book-open"></i> Talaarawan Video Tutorials</h1>
+        <p>Manood ng mga video tutorial para sa AI tools na gagamitin sa paggawa ng talaarawan at pagsulat sa Filipino
+        </p>
+    </div>
+
+    <div class="video-container">
+        <div class="video-grid">
+            <!-- Entries AI Video Card -->
+            <div class="video-card" data-tool="entries">
+                <div class="video-wrapper">
+                    <video id="videoEntries"
+                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%238B0000'/%3E%3Ctext x='320' y='180' text-anchor='middle' fill='%23F4B400' font-size='22' font-weight='bold'%3EENTRIES%3C/text%3E%3Ctext x='320' y='220' text-anchor='middle' fill='white' font-size='16'%3EEntries AI Tutorial%3C/text%3E%3C/svg%3E">
+                        <source src="ENTRIES AI.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="play-overlay" data-video="entries">
+                        <div class="play-btn-large">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="tool-badge">
+                        <i class="fas fa-video"></i>
+                        <span>VIDEO TUTORIAL</span>
+                    </div>
+                    <h2><i class="fas fa-book-open"></i> Entries AI</h2>
+                    <div class="video-description">
+                        <p>Matutunan kung paano gamitin ang <strong>Entries AI</strong> para sa digital journal at
+                            lesson planning. Ang tutorial na ito ay magtuturo sa iyo kung paano mag-record ng mga aralin
+                            at repleksyon gamit ang AI.</p>
+                        <p style="margin-top: 0.5rem;"><strong>📌 Gamit sa Pagtuturo:</strong> Paggawa ng digital
+                            journal, pagre-record ng mga aralin, at paggawa ng repleksyon para sa mga mag-aaral.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rosebud AI Video Card -->
+            <div class="video-card" data-tool="rosebud">
+                <div class="video-wrapper">
+                    <video id="videoRosebud"
+                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%238B0000'/%3E%3Ctext x='320' y='180' text-anchor='middle' fill='%23F4B400' font-size='22' font-weight='bold'%3EROSEBUD%3C/text%3E%3Ctext x='320' y='220' text-anchor='middle' fill='white' font-size='16'%3ERosebud AI Tutorial%3C/text%3E%3C/svg%3E">
+                        <source src="ROSEBUD AI.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="play-overlay" data-video="rosebud">
+                        <div class="play-btn-large">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="tool-badge">
+                        <i class="fas fa-video"></i>
+                        <span>VIDEO TUTORIAL</span>
+                    </div>
+                    <h2><i class="fas fa-gamepad"></i> Rosebud AI</h2>
+                    <div class="video-description">
+                        <p>Alamin kung paano gamitin ang <strong>Rosebud AI</strong> para sa AI story generation at
+                            writing assistance. Perpekto para sa paggawa ng maikling kwento, tula, at iba pang
+                            malikhaing sulatin sa Filipino.</p>
+                        <p style="margin-top: 0.5rem;"><strong>📌 Gamit sa Pagtuturo:</strong> Pagsulat ng maikling
+                            kwento, tula, at malikhaing sulatin gamit ang AI assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 AI Integrated Instructional Toolkit | Filipino 107 - Tarlac State University</p>
+        <p><small>KOLEHIYO NG EDUKASYON | College of Education</small></p>
+    </footer>
+
+    <div id="toast" class="toast-message">
+        <i class="fas fa-check-circle"></i>
+        <span>Tapos na ang video!</span>
+    </div>
+
+    <script>
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('span').textContent = message;
+            toast.style.backgroundColor = isSuccess ? '#28a745' : '#dc3545';
+            toast.style.display = 'flex';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function setupVideoPlayer(videoId, overlayClass) {
+            const video = document.getElementById(videoId);
+            const overlay = document.querySelector(`.play-overlay[data-video="${overlayClass}"]`);
+
+            if (!video || !overlay) return;
+
+            function togglePlay() {
+                if (video.paused) {
+                    video.play();
+                    overlay.style.display = 'none';
+                } else {
+                    video.pause();
+                    overlay.style.display = 'flex';
+                }
+            }
+
+            video.addEventListener('click', togglePlay);
+            overlay.addEventListener('click', togglePlay);
+
+            video.addEventListener('pause', () => {
+                overlay.style.display = 'flex';
+            });
+
+            video.addEventListener('play', () => {
+                overlay.style.display = 'none';
+            });
+
+            video.addEventListener('ended', () => {
+                overlay.style.display = 'flex';
+                const tool = videoId.replace('video', '').toLowerCase();
+                showToast(`Tapos na ang video! Pwede mo nang markahan ang ${tool.toUpperCase()} bilang completed.`);
+            });
+        }
+
+        // Setup both videos
+        setupVideoPlayer('videoEntries', 'entries');
+        setupVideoPlayer('videoRosebud', 'rosebud');
+
+        // Dark Mode Toggle
+        let isDarkMode = localStorage.getItem('talaarawanTheme') === 'dark';
+
+        function applyDarkMode() {
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        }
+
+        applyDarkMode();
+
+        const navContainer = document.querySelector('.nav-container');
+        const themeBtn = document.createElement('button');
+        themeBtn.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
+        themeBtn.style.cssText = 'background: rgba(255,255,255,0.15); border: none; padding: 0.6rem 1.2rem; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; transition: all 0.3s;';
+        themeBtn.onclick = () => {
+            isDarkMode = !isDarkMode;
+            localStorage.setItem('talaarawanTheme', isDarkMode ? 'dark' : 'light');
+            themeBtn.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
+            applyDarkMode();
+        };
+        navContainer.appendChild(themeBtn);
+
+        document.querySelectorAll('video').forEach(video => {
+            video.pause();
+        });
+    </script>
+</body>
+
+</html>

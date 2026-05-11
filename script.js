@@ -24,7 +24,7 @@ function loadSavedData() {
             }
         });
     }
-    
+
     const savedFavorites = localStorage.getItem("favorites");
     if (savedFavorites) {
         const favorites = JSON.parse(savedFavorites);
@@ -43,7 +43,7 @@ function saveProgress() {
         progress[tool.id] = { completed: tool.completed, favorite: tool.favorite };
     });
     localStorage.setItem("toolProgress", JSON.stringify(progress));
-    
+
     const favorites = toolsData.filter(t => t.favorite).map(t => t.id);
     localStorage.setItem("favorites", JSON.stringify(favorites));
 }
@@ -52,29 +52,29 @@ function saveProgress() {
 function renderTools(filter = "all", searchTerm = "") {
     const grid = document.getElementById("toolsGrid");
     if (!grid) return;
-    
+
     let filteredTools = [...toolsData];
-    
+
     // Apply filter
     if (filter === "favorites") {
         filteredTools = filteredTools.filter(t => t.favorite);
     } else if (filter !== "all") {
         filteredTools = filteredTools.filter(t => t.category === filter);
     }
-    
+
     // Apply search
     if (searchTerm) {
-        filteredTools = filteredTools.filter(t => 
+        filteredTools = filteredTools.filter(t =>
             t.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             t.description.toLowerCase().includes(searchTerm.toLowerCase())
         );
     }
-    
+
     if (filteredTools.length === 0) {
         grid.innerHTML = `<div class="no-results"><i class="fas fa-search"></i><h3>No tools found</h3><p>Try a different search term or filter</p></div>`;
         return;
     }
-    
+
     grid.innerHTML = filteredTools.map(tool => `
         <div class="tool-card-pro" data-tool-id="${tool.id}">
             <div class="tool-header-pro">
@@ -95,7 +95,7 @@ function renderTools(filter = "all", searchTerm = "") {
             <a href="tools/${tool.id}.html" style="text-decoration: none; display: block; margin-top: 1rem; color: #667eea;">View Tutorial →</a>
         </div>
     `).join("");
-    
+
     updateStats();
 }
 
@@ -115,13 +115,13 @@ function markComplete(toolId) {
     if (tool && !tool.completed) {
         tool.completed = true;
         saveProgress();
-        
+
         // Update streak
         updateStreak();
-        
+
         // Show success message
         alert("🎉 Congratulations! You've completed this tutorial!");
-        
+
         // Update button
         const btn = document.querySelector(".mark-complete-btn");
         if (btn) {
@@ -137,7 +137,7 @@ function updateStats() {
     const completedCount = toolsData.filter(t => t.completed).length;
     const completedSpan = document.getElementById("completedCount");
     if (completedSpan) completedSpan.textContent = completedCount;
-    
+
     const percentSpan = document.getElementById("progressPercent");
     if (percentSpan) {
         const percent = Math.round((completedCount / 10) * 100);
@@ -150,21 +150,21 @@ function updateStreak() {
     const lastLogin = localStorage.getItem("lastLogin");
     const today = new Date().toDateString();
     let streak = parseInt(localStorage.getItem("streak")) || 0;
-    
+
     if (lastLogin === today) return;
-    
+
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    
+
     if (lastLogin === yesterday.toDateString()) {
         streak++;
     } else {
         streak = 1;
     }
-    
+
     localStorage.setItem("lastLogin", today);
     localStorage.setItem("streak", streak);
-    
+
     const streakSpan = document.getElementById("streakDays");
     if (streakSpan) streakSpan.textContent = streak;
 }
@@ -176,10 +176,10 @@ function initDarkMode() {
         console.log("Theme toggle not found");
         return;
     }
-    
+
     const savedTheme = localStorage.getItem("theme");
     console.log("Saved theme:", savedTheme);
-    
+
     // Apply saved theme on page load
     if (savedTheme === "dark") {
         document.body.classList.add("dark-mode");
@@ -190,9 +190,9 @@ function initDarkMode() {
         themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         console.log("Light mode applied");
     }
-    
+
     // Toggle theme on click
-    themeToggle.addEventListener("click", function() {
+    themeToggle.addEventListener("click", function () {
         document.body.classList.toggle("dark-mode");
         const isDark = document.body.classList.contains("dark-mode");
         localStorage.setItem("theme", isDark ? "dark" : "light");
@@ -202,7 +202,7 @@ function initDarkMode() {
 }
 
 // Make sure it's called AFTER DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     initDarkMode();
 });
 
@@ -216,18 +216,18 @@ function initDashboard() {
     updateStats();
     updateStreak();
     initDarkMode();
-    
+
     // Set user name
     const userEmail = localStorage.getItem("userEmail");
     if (userEmail) {
         const userName = userEmail.split('@')[0];
         const nameSpan = document.getElementById("userName");
         if (nameSpan) nameSpan.textContent = userName;
-        
+
         const greetingSpan = document.getElementById("userGreeting");
         if (greetingSpan) greetingSpan.textContent = `Hi, ${userName}`;
     }
-    
+
     // Search functionality
     const searchInput = document.getElementById("searchInput");
     if (searchInput) {
@@ -236,7 +236,7 @@ function initDashboard() {
             renderTools(currentFilter, currentSearch);
         });
     }
-    
+
     // Filter buttons
     const filterBtns = document.querySelectorAll(".filter-btn");
     filterBtns.forEach(btn => {
@@ -247,7 +247,7 @@ function initDashboard() {
             renderTools(currentFilter, currentSearch);
         });
     });
-    
+
     // Progress modal
     const viewProgressBtn = document.getElementById("viewProgress");
     if (viewProgressBtn) {
@@ -262,18 +262,18 @@ function initDashboard() {
 function showProgressModal() {
     const modal = document.getElementById("progressModal");
     if (!modal) return;
-    
+
     const completed = toolsData.filter(t => t.completed).length;
     const inProgress = toolsData.filter(t => !t.completed).length;
     const favorites = toolsData.filter(t => t.favorite).length;
-    
+
     document.getElementById("modalCompleted").textContent = `${completed}/10`;
     document.getElementById("modalInProgress").textContent = inProgress;
     document.getElementById("modalFavorites").textContent = favorites;
-    
+
     const percent = Math.round((completed / 10) * 100);
     document.getElementById("progressPercent").textContent = `${percent}%`;
-    
+
     const completedList = document.getElementById("completedList");
     if (completedList) {
         const completedTools = toolsData.filter(t => t.completed);
@@ -289,9 +289,9 @@ function showProgressModal() {
             `).join("");
         }
     }
-    
+
     modal.style.display = "flex";
-    
+
     // Close modal
     const closeBtn = modal.querySelector(".close");
     if (closeBtn) {
@@ -306,7 +306,7 @@ function showProgressModal() {
 function initToolPage(toolId) {
     loadSavedData();
     initDarkMode();
-    
+
     const tool = toolsData.find(t => t.id === toolId);
     if (tool && tool.completed) {
         const btn = document.querySelector(".mark-complete-btn");
@@ -341,43 +341,43 @@ const translations = {
         navTools: "AI Tools",
         navLogin: "Login",
         navStart: "Get Started",
-        
+
         // Hero Section
         heroBadge: "Filipino 107 | Innovative Teaching",
         heroTitle1: "AI-Integrated",
         heroTitle2: "Instructional Toolkit",
-        heroDesc: "A modern toolkit for teaching Filipino 107 using 10 AI tools. Designed for future educators of Tarlac State University - College of Education.",
+        heroDesc: "A modern toolkit for teaching Filipino 107 using 15 AI tools. Designed for future educators of Tarlac State University - College of Education.",
         heroBtnStart: "Get Started",
         heroBtnLearn: "Learn More",
-        
+
         // Stats
         statTools: "AI Tools",
         statTuts: "Tutorials",
         statAccess: "Access",
-        
+
         // Floating Cards
         card1: "AI in Filipino",
         card2: "Video Tutorials",
         card3: "Innovative Teaching",
-        
+
         // Features Section
         featuresTag: "Why Choose Us",
         featuresTitle: "Everything You Need for Modern Teaching",
         featuresSub: "Specially designed for Filipino 107 - Innovative Teaching of Filipino",
-        
-        feature1Title: "10 AI Tools",
-        feature1Desc: "Complete tutorials for popular AI tools that can be used in teaching Filipino",
+
+        feature1Title: "15 AI Tools",
+        feature1Desc: "Complete tutorials for popular AI tools that can be used in teaching FILIPINO 107 PREPARATION AND EVALUATION OF INSTRUCTIONAL MATERIALS",
         feature2Title: "Video Tutorials",
         feature2Desc: "Step-by-step video guides for easy understanding",
         feature3Title: "Innovative Strategies",
-        feature3Desc: "Sample lessons using AI in teaching Filipino",
+        feature3Desc: "Sample lessons using AI in teaching FILIPINO 107 PREPARATION AND EVALUATION OF INSTRUCTIONAL MATERIALS",
         feature4Title: "Favorites",
         feature4Desc: "Bookmark frequently used AI tools for quick access",
         feature5Title: "Progress Tracking",
         feature5Desc: "Track your completed tutorials and learning journey",
         feature6Title: "Dark Mode",
         feature6Desc: "Comfortable viewing for late-night study sessions",
-        
+
         // Footer
         footerTitle: "AI Instructional Toolkit",
         footerSub: "Filipino 107 - Innovative Teaching of Filipino",
@@ -393,7 +393,7 @@ const translations = {
         footerTerms: "Terms of Use",
         footerCopyright: "© 2024 AI Integrated Instructional Toolkit | Filipino 107 - Tarlac State University",
         footerResearch: "A research project for innovative teaching of Filipino",
-        
+
         // Login Page
         loginTitle: "Login - AI Instructional Toolkit",
         loginWelcome: "Welcome Back",
@@ -410,7 +410,7 @@ const translations = {
         loginError: "Invalid email or password. Please try again.",
         loginQuote: "Technology is a tool, but the teacher brings learning to life",
         loginQuoteAuthor: "Filipino 107 Research Group",
-        
+
         // Dashboard
         dashboardWelcome: "Welcome back,",
         dashboardSubtitle: "Continue your study of AI tools for innovative teaching of Filipino.",
@@ -423,65 +423,65 @@ const translations = {
         dashboardStreak: "Learning Streak",
         dashboardDays: "days",
         dashboardCompleted: "tutorials completed",
-        
+
         // Tool Pages
         toolMarkComplete: "Mark as Complete",
         toolCompleted: "Completed!",
         toolProTip: "Pro Tip",
-        
+
         // Logout
         logoutTitle: "Logging out...",
         logoutMessage: "Thank you for using AI Instructional Toolkit",
-        
+
         // Common
         back: "Back",
         logout: "Logout",
         viewTutorial: "View Tutorial →"
     },
-    
+
     fil: {
         // Navigation
         navFeatures: "Mga Tampok",
         navTools: "AI Kasangkapan",
         navLogin: "Mag-login",
         navStart: "Simulan",
-        
+
         // Hero Section
         heroBadge: "Filipino 107 | Inobatibong Pagtuturo",
         heroTitle1: "AI-Integrated",
         heroTitle2: "Instructional Toolkit",
-        heroDesc: "Isang makabagong toolkit para sa pagtuturo ng Filipino 107 gamit ang 10 AI tools. Dinisenyo para sa mga magiging guro ng Tarlac State University - College of Education.",
+        heroDesc: "Isang makabagong toolkit para sa pagtuturo ng Filipino 107 gamit ang 15 AI tools. Dinisenyo para sa mga magiging guro ng Tarlac State University - College of Education.",
         heroBtnStart: "Simulan",
         heroBtnLearn: "Alamin Pa",
-        
+
         // Stats
         statTools: "AI Kasangkapan",
         statTuts: "Tutorial",
         statAccess: "Access",
-        
+
         // Floating Cards
         card1: "AI sa Filipino",
         card2: "Video Tutorial",
         card3: "Inobatibong Turo",
-        
+
         // Features Section
         featuresTag: "Bakit Kami",
         featuresTitle: "Lahat ng Kailangan sa Makabagong Pagtuturo",
         featuresSub: "Espesyal na ginawa para sa Filipino 107 - Inobatibong Pagtuturo ng Filipino",
-        
+
         feature1Title: "10 AI Kasangkapan",
-        feature1Desc: "Kompletong tutorial para sa mga sikat na AI tools na pwedeng gamitin sa pagtuturo ng Filipino",
+        feature1Desc: "Kompletong tutorial para sa mga sikat na AI tools na pwedeng gamitin sa pagtuturo ng Filipino 107 PAGHAHANDA AT EBALWASYON NG KAGAMITANG PANTURO",
         feature2Title: "Video Tutorial",
         feature2Desc: "Step-by-step video guides para madaling maintindihan",
         feature3Title: "Inobatibong Estratehiya",
-        feature3Desc: "Mga halimbawa ng leksyon gamit ang AI sa pagtuturo ng Filipino",
+        feature3Desc: "Mga halimbawa ng leksyon gamit ang AI sa pagtuturo ng Filipino 107 PAGHAHANDA AT EBALWASYON NG KAGAMITANG PANTURO",
         feature4Title: "Mga Paborito",
         feature4Desc: "I-bookmark ang mga madalas gamiting AI tools",
         feature5Title: "Pagsubaybay sa Progreso",
         feature5Desc: "Subaybayan ang iyong natapos na mga tutorial",
         feature6Title: "Dark Mode",
         feature6Desc: "Komportableng pag-aaral kahit gabi na",
-        
+
         // Footer
         footerTitle: "AI Instructional Toolkit",
         footerSub: "Filipino 107 - Inobatibong Pagtuturo ng Filipino",
@@ -497,7 +497,7 @@ const translations = {
         footerTerms: "Terms of Use",
         footerCopyright: "© 2024 AI Integrated Instructional Toolkit | Filipino 107 - Tarlac State University",
         footerResearch: "Isang proyektong pananaliksik para sa inobatibong pagtuturo ng Filipino",
-        
+
         // Login Page
         loginTitle: "Mag-login - AI Instructional Toolkit",
         loginWelcome: "Maligayang Pagbabalik",
@@ -514,7 +514,7 @@ const translations = {
         loginError: "Mali ang email o password. Pakisubukang muli.",
         loginQuote: "Ang teknolohiya ay kasangkapan, ngunit ang guro ang siyang nagbibigay-buhay sa pagkatuto",
         loginQuoteAuthor: "Filipino 107 Research Group",
-        
+
         // Dashboard
         dashboardWelcome: "Maligayang Pagbabalik,",
         dashboardSubtitle: "Ipagpatuloy ang iyong pag-aaral ng AI tools para sa inobatibong pagtuturo ng Filipino.",
@@ -527,16 +527,16 @@ const translations = {
         dashboardStreak: "Sunod-sunod na Araw",
         dashboardDays: "araw",
         dashboardCompleted: "natapos na tutorial",
-        
+
         // Tool Pages
         toolMarkComplete: "Markahan bilang Tapos",
         toolCompleted: "Tapos na!",
         toolProTip: "Pro Tip",
-        
+
         // Logout
         logoutTitle: "Lumabas na...",
         logoutMessage: "Salamat sa paggamit ng AI Instructional Toolkit",
-        
+
         // Common
         back: "Bumalik",
         logout: "Lumabas",
@@ -560,56 +560,56 @@ function applyTranslations() {
             }
         }
     });
-    
+
     // Update language toggle button text
     const langToggle = document.getElementById("langToggle");
     if (langToggle) {
-        langToggle.innerHTML = currentLang === "en" ? 
-            '<i class="fas fa-globe"></i> Filipino' : 
+        langToggle.innerHTML = currentLang === "en" ?
+            '<i class="fas fa-globe"></i> Filipino' :
             '<i class="fas fa-globe"></i> English';
     }
-    
+
     // Update HTML lang attribute
     document.documentElement.lang = currentLang === "en" ? "en" : "tl";
 }
 
 
 // Mobile Menu Toggle
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function () {
             navLinks.classList.toggle('show');
         });
-        
+
         // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                 navLinks.classList.remove('show');
             }
         });
-        
+
         // Close menu when a link is clicked
         const links = navLinks.querySelectorAll('a');
         links.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 navLinks.classList.remove('show');
             });
         });
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function(e) {
+        mobileMenuBtn.addEventListener('click', function (e) {
             e.stopPropagation();
             navLinks.classList.toggle('show');
-            
+
             // Change icon
             const icon = mobileMenuBtn.querySelector('i');
             if (navLinks.classList.contains('show')) {
@@ -620,9 +620,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon.classList.add('fa-bars');
             }
         });
-        
+
         // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                 navLinks.classList.remove('show');
                 const icon = mobileMenuBtn.querySelector('i');
@@ -632,11 +632,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
-        
+
         // Close menu when clicking a link
         const links = navLinks.querySelectorAll('a');
         links.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function () {
                 navLinks.classList.remove('show');
                 const icon = mobileMenuBtn.querySelector('i');
                 if (icon) {
@@ -659,7 +659,7 @@ function initLanguageSwitcher() {
             applyTranslations();
         });
     }
-    
+
     applyTranslations();
 }
 

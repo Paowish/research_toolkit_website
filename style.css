@@ -306,22 +306,22 @@ a {
 }
 
 /* FIXED GET STARTED BUTTON */
-.nav-cta-btn {
+/* .nav-cta-btn {
     background: #F4B400 !important;
     color: #8B0000 !important;
     padding: 6px 20px !important;
     border-radius: 30px !important;
     font-weight: 700 !important;
-}
+} */
 
-.nav-cta-btn:hover {
+/* .nav-cta-btn:hover {
     background: #C89000 !important;
     color: #8B0000 !important;
     transform: translateY(-2px);
-}
+} */
 
 /* FORCE FIX - ADD AT VERY END */
-.nav-login-btn {
+/* .nav-login-btn {
     border: 2px solid #F4B400 !important;
     background: transparent !important;
     color: white !important;
@@ -330,9 +330,9 @@ a {
 .nav-login-btn:hover {
     background: #F4B400 !important;
     color: #8B0000 !important;
-}
+} */
 
-.nav-cta-btn {
+/* .nav-cta-btn {
     background: #F4B400 !important;
     color: #ffffff !important;
 }
@@ -340,7 +340,7 @@ a {
 .nav-cta-btn:hover {
     background: #C89000 !important;
     color: #8B0000 !important;
-}
+} */
 
 /* Language Toggle Button */
 .lang-toggle-btn {
@@ -5841,7 +5841,7 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
     align-items: center;
 }
 
-.navbar .nav-links a {
+/* .navbar .nav-links a {
     text-decoration: none;
     color: var(--tsu-white);
     font-weight: 500;
@@ -5851,7 +5851,7 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
 
 .navbar .nav-links a:hover {
     color: var(--tsu-gold);
-}
+} */
 
 .navbar .nav-login-btn {
     padding: 6px 18px;
@@ -5864,7 +5864,7 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
     color: var(--tsu-maroon) !important;
 }
 
-.navbar .nav-cta-btn {
+/* .navbar .nav-cta-btn {
     background: var(--tsu-gold);
     color: var(--tsu-maroon) !important;
     padding: 6px 20px;
@@ -5875,7 +5875,7 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
 .navbar .nav-cta-btn:hover {
     background: var(--tsu-gold-dark);
     transform: translateY(-2px);
-}
+} */
 
 .navbar .lang-toggle-btn {
     background: rgba(255, 255, 255, 0.15);
@@ -6190,11 +6190,11 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
     color: white !important;
     font-weight: 500 !important;
     font-size: 0.9rem !important;
-    transition: color 0.3s !important;
+    /* transition: color 0.3s !important; */
 }
 
 .navbar .nav-links a:hover {
-    color: var(--tsu-gold) !important;
+    /* color: var(--tsu-gold) !important; */
 }
 
 .navbar .nav-login-btn {
@@ -6220,6 +6220,7 @@ body.dark-mode ::-webkit-scrollbar-thumb:hover {
     background: var(--tsu-gold-dark) !important;
     transform: translateY(-2px) !important;
 }
+
 
 .navbar .lang-toggle-btn {
     background: rgba(255, 255, 255, 0.15) !important;
@@ -7999,4 +8000,116 @@ body.dark-mode .tool-card-pro .teaching-use {
 
 body.dark-mode .tool-card-pro .view-tutorial-btn {
     color: var(--tsu-gold);
+}
+
+/* ========== FIX FOR 15 TOOLS STAGGER - ADD AT VERY END ========== */
+.stagger-children>* {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.stagger-children>*:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.stagger-children>*:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.stagger-children>*:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.stagger-children>*:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.stagger-children>*:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.stagger-children>*:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.stagger-children>*:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.stagger-children>*:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+.stagger-children>*:nth-child(9) {
+    animation-delay: 0.45s;
+}
+
+.stagger-children>*:nth-child(10) {
+    animation-delay: 0.5s;
+}
+
+.stagger-children>*:nth-child(11) {
+    animation-delay: 0.55s;
+}
+
+.stagger-children>*:nth-child(12) {
+    animation-delay: 0.6s;
+}
+
+.stagger-children>*:nth-child(13) {
+    animation-delay: 0.65s;
+}
+
+.stagger-children>*:nth-child(14) {
+    animation-delay: 0.7s;
+}
+
+.stagger-children>*:nth-child(15) {
+    animation-delay: 0.75s;
+}
+
+.stagger-children>*:nth-child(16) {
+    animation-delay: 0.8s;
+}
+
+.stagger-children>*:nth-child(17) {
+    animation-delay: 0.85s;
+}
+
+.stagger-children>*:nth-child(18) {
+    animation-delay: 0.9s;
+}
+
+.stagger-children>*:nth-child(19) {
+    animation-delay: 0.95s;
+}
+
+.stagger-children>*:nth-child(20) {
+    animation-delay: 1s;
+}
+
+/* Force all tool cards to display */
+.tools-grid-preview {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+    gap: 1.2rem !important;
+    margin-top: 2.5rem !important;
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+.tool-preview-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: var(--card-bg) !important;
+    border-radius: 16px !important;
+    padding: 1.2rem !important;
+    text-align: center !important;
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    position: relative !important;
+    overflow: hidden !important;
 }

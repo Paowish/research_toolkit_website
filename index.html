@@ -10,6 +10,302 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========== GLOBAL SMOOTH TRANSITIONS ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ========== SMOOTH LOGIN BUTTON HOVER ========== */
+        .nav-cta-btn {
+            background: #F4B400 !important;
+            color: #8B0000 !important;
+            padding: 8px 24px !important;
+            border-radius: 40px !important;
+            font-weight: 700 !important;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            z-index: 1 !important;
+        }
+
+        .nav-cta-btn::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: -100% !important;
+            width: 100% !important;
+            height: 100% !important;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
+            transition: left 0.5s ease !important;
+            z-index: -1 !important;
+        }
+
+        .nav-cta-btn:hover::before {
+            left: 100% !important;
+        }
+
+        .nav-cta-btn:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 10px 25px rgba(244, 180, 0, 0.4) !important;
+            background: #FFD54F !important;
+        }
+
+        /* Smooth hover for all interactive elements */
+        .navbar a,
+        .nav-links a,
+        .lang-toggle-btn,
+        .btn-primary-pro,
+        .btn-secondary-pro,
+        .feature-card-pro,
+        .tool-preview-card,
+        .showcase-feature,
+        .objective-card,
+        .footer-pro a,
+        .scroll-top-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Navbar links hover */
+        .nav-links a {
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #F4B400;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero buttons hover */
+        .btn-primary-pro {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary-pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary-pro:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary-pro {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-secondary-pro:hover {
+            transform: translateY(-3px);
+            background: #8B0000;
+            color: white;
+            border-color: #8B0000;
+        }
+
+        /* Feature cards hover */
+        .feature-card-pro {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feature-card-pro:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon-pro {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card-pro:hover .feature-icon-pro {
+            background: linear-gradient(135deg, #8B0000, #F4B400);
+            transform: scale(1.1);
+        }
+
+        .feature-card-pro:hover .feature-icon-pro i {
+            color: white;
+        }
+
+        /* Tool preview cards hover */
+        .tool-preview-card {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .tool-preview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8B0000, #F4B400);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .tool-preview-card:hover::before {
+            opacity: 1;
+        }
+
+        .tool-preview-card:hover i,
+        .tool-preview-card:hover span {
+            color: white !important;
+        }
+
+        .tool-preview-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Showcase features hover */
+        .showcase-feature {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .showcase-feature:hover {
+            transform: translateX(10px);
+        }
+
+        .showcase-feature i {
+            transition: all 0.3s ease;
+        }
+
+        .showcase-feature:hover i {
+            transform: scale(1.2);
+            color: #F4B400;
+        }
+
+        /* Showcase image hover */
+        .showcase-image {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .showcase-image:hover {
+            transform: translateY(-8px);
+        }
+
+        .showcase-image img {
+            transition: transform 0.5s ease;
+        }
+
+        .showcase-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Objective cards hover */
+        .objective-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .objective-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .objective-number {
+            transition: all 0.3s ease;
+        }
+
+        .objective-card:hover .objective-number {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #8B0000, #F4B400);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Footer links hover */
+        .footer-pro a {
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-pro a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #F4B400;
+            transition: width 0.3s ease;
+        }
+
+        .footer-pro a:hover::after {
+            width: 100%;
+        }
+
+        /* Scroll to top button */
+        .scroll-top-btn {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .scroll-top-btn:hover {
+            transform: translateY(-5px);
+            background: #F4B400;
+            color: #8B0000;
+        }
+
+        /* Stats numbers animation */
+        .stat-number {
+            transition: all 0.3s ease;
+        }
+
+        .stat:hover .stat-number {
+            transform: scale(1.1);
+            color: #F4B400;
+        }
+
+        /* Hero badge hover */
+        .hero-badge {
+            transition: all 0.3s ease;
+        }
+
+        .hero-badge:hover {
+            transform: translateY(-2px);
+            background: rgba(244, 180, 0, 0.25);
+        }
+
+        /* Language toggle hover */
+        .lang-toggle-btn {
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+    </style>
 </head>
 
 <body class="landing-pro">
@@ -66,7 +362,7 @@
                 </span>
             </h1>
             <p class="hero-description animate-fade-right" data-key="heroDesc">
-                Isang makabagong toolkit para sa pagtuturo ng Filipino 107 gamit ang 10 AI tools.
+                Isang makabagong toolkit para sa pagtuturo ng Filipino 107 gamit ang 15 AI tools.
                 Dinisenyo para sa mga magiging guro ng Kolehiyo ng Edukasyon - Tarlac State University.
             </p>
             <div class="hero-buttons-pro animate-fade-up">
@@ -79,17 +375,17 @@
             </div>
             <div class="hero-stats stagger-children">
                 <div class="stat">
-                    <span class="stat-number">10</span>
+                    <span class="stat-number">15</span>
                     <span class="stat-label" data-key="statTools">AI Kasangkapan</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label" data-key="statTuts">Tutorial</span>
+                    <span class="stat-number">15</span>
+                    <span class="stat-label" data-key="statTuts">Tutorials</span>
                 </div>
-                <div class="stat">
+                <!-- <div class="stat">
                     <span class="stat-number">24/7</span>
                     <span class="stat-label" data-key="statAccess">Access</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -106,7 +402,7 @@
             <div class="features-grid-pro">
                 <div class="feature-card-pro hover-lift hover-glow scroll-reveal">
                     <div class="feature-icon-pro"><i class="fas fa-layer-group"></i></div>
-                    <h3 data-key="feature1Title">10 AI Kasangkapan</h3>
+                    <h3 data-key="feature1Title">15 AI Kasangkapan</h3>
                     <p data-key="feature1Desc">Kompletong tutorial para sa mga sikat na AI tools na pwedeng gamitin sa
                         pagtuturo ng Filipino</p>
                 </div>
@@ -165,61 +461,96 @@
                     </div>
                 </div>
                 <div class="showcase-image hover-lift scroll-reveal">
-                    <img src="assets/images/COED Building Bottom.png" alt="CTE Building">
+                    <img src="assets/images/COED_Building_Bottom.png" alt="CTE Building">
                     <div class="image-caption">College of Teacher Education Building</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tools Preview Section - ALL 10 AI TOOLS -->
+    <!-- Tools Preview Section - ALL NEW AI TOOLS (Based on Client's List) -->
     <section id="tools" class="tools-preview-pro">
         <div class="container">
             <div class="section-header scroll-reveal">
                 <span class="section-tag" data-key="toolsTag">AI Kasangkapan para sa Filipino</span>
-                <h2 data-key="toolsTitle">10 Makabagong AI Tools</h2>
-                <p data-key="toolsSub">Mula sa pagsulat hanggang sa pananaliksik - nandito lahat</p>
+                <h2 data-key="toolsTitle">15 Makabagong AI Tools</h2>
+                <p data-key="toolsSub">Mula sa sketch hanggang sa pagsusulit - nandito lahat</p>
             </div>
             <div class="tools-grid-preview stagger-children">
+                <!-- 1 -->
                 <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fab fa-google animate-float"></i>
-                    <span>Google Gemini</span>
+                    <i class="fas fa-paintbrush animate-float"></i>
+                    <span>AutoDraw</span>
                 </div>
+                <!-- 2 -->
                 <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fab fa-microsoft animate-float"></i>
-                    <span>Microsoft Copilot</span>
+                    <i class="fas fa-magic animate-float"></i>
+                    <span>Dreamina AI</span>
                 </div>
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-search animate-float"></i>
-                    <span>Perplexity AI</span>
-                </div>
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-pen-fancy animate-float"></i>
-                    <span>Jasper AI</span>
-                </div>
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-comment-dots animate-float"></i>
-                    <span>Character AI</span>
-                </div>
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-feather animate-float"></i>
-                    <span>Poe</span>
-                </div>
+                <!-- 3 -->
                 <div class="tool-preview-card hover-lift hover-glow">
                     <i class="fas fa-brain animate-float"></i>
-                    <span>Pi AI</span>
+                    <span>MindMeister</span>
                 </div>
+                <!-- 4 -->
                 <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-cogs animate-float"></i>
-                    <span>Gizmo</span>
+                    <i class="fas fa-chart-simple animate-float"></i>
+                    <span>Whimsical</span>
                 </div>
+                <!-- 5 -->
                 <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-chart-bar animate-float"></i>
-                    <span>Dola</span>
+                    <i class="fas fa-chart-pie animate-float"></i>
+                    <span>Visme</span>
                 </div>
+                <!-- 6 -->
                 <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-comment animate-float"></i>
-                    <span>Deepseek</span>
+                    <i class="fas fa-cube animate-float"></i>
+                    <span>Framer</span>
+                </div>
+                <!-- 7 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-table-cells-large animate-float"></i>
+                    <span>Notion</span>
+                </div>
+                <!-- 8 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-feather animate-float"></i>
+                    <span>Jenni AI</span>
+                </div>
+                <!-- 9 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-book-open animate-float"></i>
+                    <span>Entries</span>
+                </div>
+                <!-- 10 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-sitemap animate-float"></i>
+                    <span>Coggle It</span>
+                </div>
+                <!-- 11 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-pen-fancy animate-float"></i>
+                    <span>Canva Magic Design</span>
+                </div>
+                <!-- 12 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-chalkboard-user animate-float"></i>
+                    <span>Lesson Planner PH</span>
+                </div>
+                <!-- 13 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-clipboard-question animate-float"></i>
+                    <span>Formative</span>
+                </div>
+                <!-- 14 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-square-poll-vertical animate-float"></i>
+                    <span>Testportal</span>
+                </div>
+                <!-- 15 -->
+                <div class="tool-preview-card hover-lift hover-glow">
+                    <i class="fas fa-gamepad animate-float"></i>
+                    <span>Rosebud</span>
                 </div>
             </div>
         </div>
@@ -235,19 +566,26 @@
             </div>
             <div class="objectives-grid">
                 <div class="objective-card hover-lift scroll-reveal">
-                    <div class="objective-number">01</div>
-                    <h3>Pagbuo ng Toolkit</h3>
-                    <p>Makabuo ng isang AI Integrated Instructional Toolkit na angkop sa pagtuturo ng Filipino 107</p>
+                    <div class="objective-number">1</div>
+                    <!-- <h3>Pagbuo ng Toolkit</h3> -->
+                    <p>Matukoy ang iba’t ibang AI application na maaaring gamitin ng pagtuturo sa Filipino 107
+                        Paghahanda at Ebalwasyon ng Kagamitang Panturo</p>
                 </div>
                 <div class="objective-card hover-lift scroll-reveal">
-                    <div class="objective-number">02</div>
-                    <h3>Pagsusuri ng Epektibidad</h3>
-                    <p>Masuri ang epektibidad ng toolkit sa inobatibong pagtuturo ng Filipino</p>
+                    <div class="objective-number">2</div>
+                    <!-- <h3>Pagsusuri ng Epektibidad</h3> -->
+                    <p>Makabuo ng isang AI integrated Instructional toolkit na batay sa mga kasanayang pagkatuto sa
+                        Filipino 107 Paghahanda at Ebalwasyon ng Kagamitang Panturo.</p>
                 </div>
                 <div class="objective-card hover-lift scroll-reveal">
-                    <div class="objective-number">03</div>
-                    <h3>Paglinang ng Kasanayan</h3>
-                    <p>Malinang ang kasanayan ng mga guro sa paggamit ng AI tools sa pagtuturo</p>
+                    <div class="objective-number">2.1</div>
+                    <!-- <h3>Paglinang ng Kasanayan</h3> -->
+                    <p>Prinsipyo ng inobatatibong pagtuturo;</p>
+                </div>
+                <div class="objective-card hover-lift scroll-reveal">
+                    <div class="objective-number">2.2</div>
+                    <!-- <h3>Paglinang ng Kasanayan</h3> -->
+                    <p>Kaangkupan ng integrasyon ng AI sa pagtuturo;</p>
                 </div>
             </div>
         </div>
@@ -294,7 +632,6 @@
     <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
 
     <script src="script.js"></script>
     <script src="translations.js"></script>
@@ -363,16 +700,14 @@
             // Scroll to Top Button functionality
             const scrollTopBtn = document.getElementById('scrollTopBtn');
 
-            // Show/hide button based on scroll position
             window.addEventListener('scroll', function () {
-                if (window.pageYOffset > 300) { // Show after scrolling 300px
+                if (window.pageYOffset > 300) {
                     scrollTopBtn.classList.add('show');
                 } else {
                     scrollTopBtn.classList.remove('show');
                 }
             });
 
-            // Scroll to top when clicked
             scrollTopBtn.addEventListener('click', function () {
                 window.scrollTo({
                     top: 0,

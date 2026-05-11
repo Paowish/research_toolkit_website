@@ -10,6 +10,520 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========== ENHANCED PROFESSIONAL CARD STYLES ========== */
+
+        /* Tools Grid - Professional Layout */
+        .tools-grid-pro {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        /* Professional Tool Card */
+        .tool-card-pro {
+            background: var(--card-bg, #ffffff);
+            border-radius: 24px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary, #1a1a1a);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+            position: relative;
+            display: block;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .tool-card-pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8B0000, #F4B400, #8B0000);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tool-card-pro:hover::before {
+            opacity: 1;
+        }
+
+        .tool-card-pro:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+            border-color: transparent;
+        }
+
+        .tool-header-pro {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .tool-icon-pro {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            background: rgba(139, 0, 0, 0.08);
+        }
+
+        .tool-card-pro:hover .tool-icon-pro {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #8B0000, #F4B400);
+        }
+
+        .tool-card-pro:hover .tool-icon-pro i {
+            color: white !important;
+        }
+
+        .favorite-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favorite-btn:hover {
+            background: rgba(255, 71, 87, 0.15);
+            transform: scale(1.1);
+        }
+
+        .favorite-btn i {
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .tool-card-pro h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+            color: var(--text-primary, #1a1a1a);
+            letter-spacing: -0.3px;
+        }
+
+        .tool-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.1), rgba(244, 180, 0, 0.08));
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+            color: #8B0000;
+            letter-spacing: 0.3px;
+        }
+
+        .tool-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary, #666);
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        .teaching-use {
+            background: rgba(139, 0, 0, 0.04);
+            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            margin: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s;
+        }
+
+        .tool-card-pro:hover .teaching-use {
+            background: rgba(244, 180, 0, 0.1);
+        }
+
+        .teaching-use i {
+            font-size: 0.8rem;
+            color: #F4B400;
+        }
+
+        .teaching-use span {
+            font-size: 0.75rem;
+            color: var(--text-secondary, #555);
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #8B0000, #F4B400);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .completed-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .view-tutorial-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: transparent;
+            border: 1.5px solid #8B0000;
+            border-radius: 40px;
+            color: #8B0000;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            width: fit-content;
+        }
+
+        .view-tutorial-btn:hover {
+            background: linear-gradient(135deg, #8B0000, #F4B400);
+            color: white;
+            border-color: transparent;
+            transform: translateX(5px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem;
+            background: var(--card-bg, white);
+            border-radius: 24px;
+            color: var(--text-secondary, #666);
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        /* Stats Summary - FIXED */
+        .stats-summary {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 180px;
+            justify-content: center;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border-color: #F4B400;
+        }
+
+        .stat-card i {
+            font-size: 2.2rem;
+            color: #F4B400;
+        }
+
+        .stat-info {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #8B0000;
+            display: block;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Dark Mode Stats */
+        body.dark-mode .stat-card {
+            background: #0f3460;
+            border-color: #2c3e66;
+        }
+
+        body.dark-mode .stat-value {
+            color: #F4B400;
+        }
+
+        body.dark-mode .stat-label {
+            color: #b0b0b0;
+        }
+
+        /* Footer - FIXED */
+        .footer-pro {
+            background: #8B0000;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-logo i {
+            font-size: 2rem;
+            color: #F4B400;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo span {
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .link-group h4 {
+            color: #F4B400;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .link-group a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .link-group a:hover {
+            color: #F4B400;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+
+        body.dark-mode .footer-pro {
+            background: #0f0f1a;
+        }
+
+        /* Motivation Card */
+        .motivation-card {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), rgba(244, 180, 0, 0.05));
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-left: 4px solid #F4B400;
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            color: #F4B400;
+            opacity: 0.5;
+        }
+
+        .quote-content {
+            flex: 1;
+        }
+
+        .quote-content p {
+            font-size: 1rem;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .quote-content span {
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .quote-refresh {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            color: #999;
+        }
+
+        .quote-refresh:hover {
+            background: rgba(244, 180, 0, 0.1);
+            color: #F4B400;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tools-grid-pro {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .tool-card-pro {
+                padding: 1.2rem;
+            }
+
+            .tool-icon-pro {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .stats-summary {
+                flex-direction: column;
+            }
+
+            .stat-card {
+                min-width: auto;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .motivation-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .tool-card-pro {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .tool-card-pro:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .tool-card-pro:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .tool-card-pro:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .tool-card-pro:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        .tool-card-pro:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+
+        .tool-card-pro:nth-child(6) {
+            animation-delay: 0.3s;
+        }
+
+        .tool-card-pro:nth-child(7) {
+            animation-delay: 0.35s;
+        }
+
+        .tool-card-pro:nth-child(8) {
+            animation-delay: 0.4s;
+        }
+
+        .tool-card-pro:nth-child(9) {
+            animation-delay: 0.45s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -110,25 +624,25 @@
             </div>
             <div class="filter-buttons stagger-children">
                 <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th-large"></i> <span>Lahat ng Tool</span>
+                    <i class="fas fa-th-large"></i> <span id="filterAllText">Lahat ng Tool</span>
                 </button>
                 <button class="filter-btn" data-filter="sketch">
-                    <i class="fas fa-paintbrush"></i> <span>Sketch</span>
+                    <i class="fas fa-paintbrush"></i> <span id="filterSketchText">Sketch</span>
                 </button>
                 <button class="filter-btn" data-filter="assessment">
-                    <i class="fas fa-clipboard-list"></i> <span>Pagsusulit</span>
+                    <i class="fas fa-clipboard-list"></i> <span id="filterAssessmentText">Pagsusulit</span>
                 </button>
                 <button class="filter-btn" data-filter="portfolio">
-                    <i class="fas fa-folder-open"></i> <span>Portfolio</span>
+                    <i class="fas fa-folder-open"></i> <span id="filterPortfolioText">Portfolio</span>
                 </button>
                 <button class="filter-btn" data-filter="writing">
-                    <i class="fas fa-pen-fancy"></i> <span>Pagsulat</span>
+                    <i class="fas fa-pen-fancy"></i> <span id="filterWritingText">Pagsulat</span>
                 </button>
                 <button class="filter-btn" data-filter="lesson">
-                    <i class="fas fa-chalkboard-user"></i> <span>Banghay Aralin</span>
+                    <i class="fas fa-chalkboard-user"></i> <span id="filterLessonText">Banghay Aralin</span>
                 </button>
                 <button class="filter-btn" data-filter="favorites">
-                    <i class="fas fa-heart"></i> <span>Mga Paborito</span>
+                    <i class="fas fa-heart"></i> <span id="filterFavoritesText">Mga Paborito</span>
                 </button>
             </div>
         </div>
@@ -237,10 +751,10 @@
             </div>
             <div class="footer-links">
                 <div class="link-group scroll-reveal">
-                    <h4>Menu</h4>
-                    <a href="index.html#features">Mga Tampok</a>
+                    <!-- <h4>Menu</h4>
+                    <a href="">Mga Tampok</a>
                     <a href="index.html#tools">AI Kasangkapan</a>
-                    <a href="login.html">Mag-login</a>
+                    <a href="login.html">Mag-login</a> -->
                 </div>
                 <div class="link-group scroll-reveal">
                     <h4>Suporta</h4>
@@ -265,125 +779,73 @@
     </button>
 
     <script>
-        // ========== AI TOOLS DATA - EACH ID MATCHES THE HTML FILE NAME ==========
-        const toolsData = [
-            // SKETCH CATEGORY
-            {
-                id: "autodraw",
-                name: "AutoDraw",
-                icon: "fas fa-paintbrush",
-                color: "#FF6B35",
-                category: "sketch",
-                categoryName: "Sketch",
-                description: "Gumuhit ng sketch at graphic organizer para sa pagtuturo",
-                useInTeaching: "Ilarawan ang tagpuan ng akda, gumawa ng story sequence",
-                completed: false,
-                favorite: false
+        // ========== TRANSLATIONS ==========
+        const translations = {
+            en: {
+                langToggleText: "Filipino",
+                favoritesText: "Favorites",
+                progressText: "My Progress",
+                logoutText: "Logout",
+                filterAllText: "All Tools",
+                filterSketchText: "Sketch",
+                filterAssessmentText: "Assessment",
+                filterPortfolioText: "Portfolio",
+                filterWritingText: "Writing",
+                filterLessonText: "Lesson Plan",
+                filterFavoritesText: "Favorites",
+                searchPlaceholder: "Search AI tools... (e.g., Sketch, Graphic Organizer)",
+                quoteText: '"Technology is a tool, but the teacher brings learning to life."',
+                quoteAuthor: "- Filipino 107 Research Group"
             },
-            {
-                id: "graphic-organizer",
-                name: "Graphic Organizer",
-                icon: "fas fa-project-diagram",
-                color: "#17A2B8",
-                category: "sketch",
-                categoryName: "Sketch",
-                description: "Lumikha ng concept map at visual diagrams",
-                useInTeaching: "Gumawa ng graphic organizer para sa aralin",
-                completed: false,
-                favorite: false
-            },
-
-            // ASSESSMENT CATEGORY
-            {
-                id: "testportal",
-                name: "Testportal",
-                icon: "fas fa-clipboard-list",
-                color: "#28A745",
-                category: "assessment",
-                categoryName: "Pagsusulit",
-                description: "Lumikha ng online pagsusulit at assessment",
-                useInTeaching: "Gumawa ng multiple choice, true/false, essay questions",
-                completed: false,
-                favorite: false
-            },
-
-            // PORTFOLIO CATEGORY
-            {
-                id: "visme",
-                name: "Visme",
-                icon: "fas fa-chart-pie",
-                color: "#4B0082",
-                category: "portfolio",
-                categoryName: "Portfolio",
-                description: "Lumikha ng digital portfolio at presentation",
-                useInTeaching: "Gumawa ng portfolio ng mga likhang sining ng mag-aaral",
-                completed: false,
-                favorite: false
-            },
-            {
-                id: "framer",
-                name: "Framer",
-                icon: "fas fa-layer-group",
-                color: "#0055FF",
-                category: "portfolio",
-                categoryName: "Portfolio",
-                description: "Magdisenyo ng website at online portfolio",
-                useInTeaching: "Gumawa ng website para sa mga proyekto ng mag-aaral",
-                completed: false,
-                favorite: false
-            },
-
-            // WRITING CATEGORY
-            {
-                id: "talaarawan",
-                name: "Talaarawan",
-                icon: "fas fa-book-journal",
-                color: "#E83E8C",
-                category: "writing",
-                categoryName: "Pagsulat",
-                description: "Digital na talaarawan para sa repleksyon",
-                useInTeaching: "Gumawa ng digital journal para sa repleksyon ng mag-aaral",
-                completed: false,
-                favorite: false
-            },
-            {
-                id: "lakbay-sanaysay",
-                name: "Lakbay-Sanaysay",
-                icon: "fas fa-map-marked-alt",
-                color: "#00A4EF",
-                category: "writing",
-                categoryName: "Pagsulat",
-                description: "Kasangkapan sa pagsulat ng travel essay",
-                useInTeaching: "Gumawa ng travel essay tungkol sa mga lugar sa Pilipinas",
-                completed: false,
-                favorite: false
-            },
-
-            // LESSON PLAN CATEGORY
-            {
-                id: "banghay-aralin",
-                name: "Banghay ng Pagtuturo",
-                icon: "fas fa-chalkboard-user",
-                color: "#FF8C00",
-                category: "lesson",
-                categoryName: "Banghay Aralin",
-                description: "Lumikha ng detalyadong lesson plan",
-                useInTeaching: "Gumawa ng step-by-step lesson plan para sa Filipino",
-                completed: false,
-                favorite: false
-            },
-            {
-                id: "modyul",
-                name: "Module Creator",
-                icon: "fas fa-book-open",
-                color: "#8B0000",
-                category: "lesson",
-                categoryName: "Banghay Aralin",
-                description: "Lumikha ng learning modules",
-                useInTeaching: "Gumawa ng self-learning modules para sa Filipino",
-                completed: false,
-                favorite: false
+            fil: {
+                langToggleText: "English",
+                favoritesText: "Mga Paborito",
+                progressText: "Aking Progreso",
+                logoutText: "Lumabas",
+                filterAllText: "Lahat ng Tool",
+                filterSketchText: "Sketch",
+                filterAssessmentText: "Pagsusulit",
+                filterPortfolioText: "Portfolio",
+                filterWritingText: "Pagsulat",
+                filterLessonText: "Banghay Aralin",
+                filterFavoritesText: "Mga Paborito",
+                searchPlaceholder: "Maghanap ng AI tools... (hal. AutoDraw, Testportal)",
+                quoteText: '"Ang teknolohiya ay kasangkapan, ngunit ang guro ang siyang nagbibigay-buhay sa pagkatuto."',
+                quoteAuthor: "- Filipino 107 Research Group"
             }
+        };
+
+        let currentLang = localStorage.getItem("language") || "fil";
+
+        function applyTranslations() {
+            const t = translations[currentLang];
+            if (!t) return;
+
+            document.getElementById("langToggleText").textContent = t.langToggleText;
+            document.getElementById("favoritesText").textContent = t.favoritesText;
+            document.getElementById("progressText").textContent = t.progressText;
+            document.getElementById("logoutText").textContent = t.logoutText;
+            document.getElementById("filterAllText").textContent = t.filterAllText;
+            document.getElementById("filterSketchText").textContent = t.filterSketchText;
+            document.getElementById("filterAssessmentText").textContent = t.filterAssessmentText;
+            document.getElementById("filterPortfolioText").textContent = t.filterPortfolioText;
+            document.getElementById("filterWritingText").textContent = t.filterWritingText;
+            document.getElementById("filterLessonText").textContent = t.filterLessonText;
+            document.getElementById("filterFavoritesText").textContent = t.filterFavoritesText;
+            document.getElementById("searchInput").placeholder = t.searchPlaceholder;
+            document.getElementById("quoteText").textContent = t.quoteText;
+            document.getElementById("quoteAuthorText").textContent = t.quoteAuthor;
+        }
+
+        // ========== AI TOOLS DATA ==========
+        const toolsData = [
+            { id: "sketch", name: "SKETCH", icon: "fas fa-paintbrush", color: "#FF6B35", category: "sketch", categoryName: "Sketch", description: "LAYUNIN:", useInTeaching: "Matukoy ang kahalagahan ng sketch bilang isang kagamitang pampagtuturo sa pagtuturo ng wika at panitikan.", completed: false, favorite: true },
+            { id: "graphic-organizer", name: "GRAPHIC ORGANIZER", icon: "fas fa-project-diagram", color: "#17A2B8", category: "assessment", categoryName: "Pagsusulit", description: "LAYUNIN:", useInTeaching: "Makapagbigay ng mga gamit ng graphic organizer sa pagtuturo ng asignaturang Filipino", completed: false, favorite: false },
+            { id: "portfolio", name: "PORTFOLIO", icon: "fas fa-clipboard-list", color: "#28A745", category: "portfolio", categoryName: "Portfolio", description: "LAYUNIN:", useInTeaching: "Maibigay ang mga iba't ibang uri ng portfolio (halimbawa: developmental, showcase, process). Makapagbigay ng mga halimbawa ng mga uri ng portfolio", completed: false, favorite: true },
+            { id: "lakbay-sanaysay", name: "LAKBAY SANAYSAY", icon: "fas fa-chart-pie", color: "#4B0082", category: "writing", categoryName: "Pagsulat", description: "LAYUNIN:", useInTeaching: "Makalikha ng Makabuluhang Lakbay-Sanaysay", completed: false, favorite: false },
+            { id: "talaarawan", name: "TALAARAWAN", icon: "fas fa-layer-group", color: "#0055FF", category: "lesson", categoryName: "Banghay Aralin", description: "LAYUNIN:", useInTeaching: "Matukoy ang kahalagahan ng talaarawan bilang isang kagamitang pampagtuturo sa pagtuturo ng wika at panitikan", completed: false, favorite: true },
+            { id: "pagsusulit", name: "PAGSUSULIT", icon: "fas fa-book-journal", color: "#E83E8C", category: "assessment", categoryName: "Pagsusulit", description: "LAYUNIN:", useInTeaching: "Makagawa ng sariling pagsusulit sa asignaturang Filipino.", completed: false, favorite: false },
+            { id: "ang-banghay-sa-pagtuturo", name: "ANG BANGHAY SA PAGTUTURO", icon: "fas fa-map-marked-alt", color: "#00A4EF", category: "lesson", categoryName: "Banghay Aralin", description: "LAYUNIN:", useInTeaching: "Makapaggawa ng sariling banghay aralin sa Filipino", completed: false, favorite: false }
         ];
 
         let currentFilter = "all";
@@ -471,20 +933,28 @@
             grid.innerHTML = filteredTools.map(tool => `
         <div class="tool-card-pro">
             <div class="tool-header-pro">
-                <div class="tool-icon-pro" style="background: ${tool.color}20;">
+                <div class="tool-icon-pro" style="background: ${tool.color}15;">
                     <i class="${tool.icon}" style="color: ${tool.color};"></i>
                 </div>
                 <button class="favorite-btn" onclick="event.preventDefault(); toggleFavorite('${tool.id}')">
-                    <i class="fas fa-heart" style="color: ${tool.favorite ? '#ff4757' : '#ccc'};"></i>
+                    <i class="fas fa-heart" style="color: ${tool.favorite ? '#ff4757' : '#aaa'};"></i>
                 </button>
             </div>
             <h3>${tool.name}</h3>
             <span class="tool-category">${tool.categoryName}</span>
             <p class="tool-description">${tool.description}</p>
-            <div class="teaching-use"><i class="fas fa-chalkboard"></i><span>Gamit sa Pagtuturo: ${tool.useInTeaching}</span></div>
-            <div class="progress-bar"><div class="progress-fill" style="width: ${tool.completed ? '100%' : '0%'}"></div></div>
+            <div class="teaching-use">
+                <i class="fas fa-chalkboard"></i>
+                <span>${tool.useInTeaching}</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: ${tool.completed ? '100%' : '0%'}"></div>
+            </div>
             ${tool.completed ? '<div class="completed-badge"><i class="fas fa-check-circle"></i> Tapos na!</div>' : ''}
-            <a href="tools/${tool.id}.html" class="view-tutorial-btn">Tingnan ang Tutorial →</a>
+            <div style="display: flex; gap: 0.8rem; margin-top: 1rem;">
+                <a href="tools/${tool.id}.html" class="view-tutorial-btn" style="flex: 1; text-align: center; margin-top: 0;">Tingnan ang tutorial <i class="fas fa-arrow-right"></i></a>
+                <a href="assets/video/${tool.id}.html" class="view-tutorial-btn" style="flex: 1; text-align: center; margin-top: 0; background: #8B0000; color: white; border-color: #8B0000;">Tingnan ang video tutorial <i class="fas fa-video"></i></a>
+            </div>
         </div>
     `).join("");
         }
@@ -507,14 +977,82 @@
             modal.style.display = "flex";
         }
 
+        // ========== DARK MODE FUNCTIONALITY ==========
+        function initDarkMode() {
+            const themeToggle = document.getElementById("themeToggle");
+            if (!themeToggle) return;
+
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark-mode");
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                document.body.classList.remove("dark-mode");
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+
+            themeToggle.addEventListener("click", function () {
+                document.body.classList.toggle("dark-mode");
+                const isDark = document.body.classList.contains("dark-mode");
+                localStorage.setItem("theme", isDark ? "dark" : "light");
+                themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            });
+        }
+
+        function initLanguageToggle() {
+            const langToggle = document.getElementById("langToggle");
+            if (langToggle) {
+                langToggle.addEventListener("click", function () {
+                    currentLang = currentLang === "en" ? "fil" : "en";
+                    localStorage.setItem("language", currentLang);
+                    applyTranslations();
+                    renderTools();
+                });
+            }
+        }
+
+        function initMobileMenu() {
+            const mobileBtn = document.getElementById("mobileMenuBtn");
+            const navRight = document.getElementById("navRight");
+            if (mobileBtn && navRight) {
+                mobileBtn.addEventListener("click", function () {
+                    navRight.classList.toggle("show");
+                    const icon = mobileBtn.querySelector('i');
+                    if (navRight.classList.contains('show')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                document.addEventListener('click', function (event) {
+                    if (!navRight.contains(event.target) && !mobileBtn.contains(event.target)) {
+                        navRight.classList.remove('show');
+                        const icon = mobileBtn.querySelector('i');
+                        if (icon) {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
+            }
+        }
+
         function initDashboard() {
             loadSavedData();
             renderTools();
             updateStats();
             updateStreak();
+            initDarkMode();
+            initLanguageToggle();
+            initMobileMenu();
+            applyTranslations();
 
             const userEmail = localStorage.getItem("userEmail");
-            if (userEmail) document.getElementById("userGreeting").textContent = `Hi, ${userEmail.split('@')[0]}`;
+            if (userEmail) {
+                document.getElementById("userGreeting").textContent = `Hi, ${userEmail.split('@')[0]}`;
+            }
 
             const searchInput = document.getElementById("searchInput");
             const searchClear = document.getElementById("searchClear");
