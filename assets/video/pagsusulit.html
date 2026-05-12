@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Pagsusulit Video Tutorial | AI Toolkit | Filipino 107 - TSU</title>
+    <title>Pagsusulit Video Tutorials | AI Toolkit | Filipino 107 - TSU</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -110,17 +110,15 @@
         }
 
         .video-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
         }
 
         .video-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         @media (max-width: 768px) {
@@ -293,8 +291,9 @@
     </nav>
 
     <div class="portfolio-header">
-        <h1><i class="fas fa-clipboard-list"></i> Pagsusulit Video Tutorial</h1>
-        <p>Manood ng video tutorial para sa AI tool na gagamitin sa paggawa ng pagsusulit at assessment sa Filipino</p>
+        <h1><i class="fas fa-clipboard-list"></i> Pagsusulit Video Tutorials</h1>
+        <p>Manood ng mga video tutorial para sa AI tools na gagamitin sa paggawa ng pagsusulit at assessment sa Filipino
+        </p>
     </div>
 
     <div class="video-container">
@@ -329,6 +328,37 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Testportal Video Card -->
+            <div class="video-card" data-tool="testportal">
+                <div class="video-wrapper">
+                    <video id="videoTestportal"
+                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%238B0000'/%3E%3Ctext x='320' y='180' text-anchor='middle' fill='%23F4B400' font-size='22' font-weight='bold'%3ETESTPORTAL%3C/text%3E%3Ctext x='320' y='220' text-anchor='middle' fill='white' font-size='16'%3ETestportal Tutorial%3C/text%3E%3C/svg%3E">
+                        <source src="TESTPORTAL.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="play-overlay" data-video="testportal">
+                        <div class="play-btn-large">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="tool-badge">
+                        <i class="fas fa-video"></i>
+                        <span>VIDEO TUTORIAL</span>
+                    </div>
+                    <h2><i class="fas fa-square-poll-vertical"></i> Testportal</h2>
+                    <div class="video-description">
+                        <p>Alamin kung paano gamitin ang <strong>Testportal</strong> para sa madaling paggawa ng digital
+                            na pagsusulit. Ang tutorial na ito ay magtuturo sa iyo kung paano gumawa ng online exam,
+                            automated grading, at detailed analytics para sa asignaturang Filipino.</p>
+                        <p style="margin-top: 0.5rem;"><strong>📌 Gamit sa Pagtuturo:</strong> Paggawa ng digital na
+                            pagsusulit, automated checking, exam analytics, at secure online testing para sa mga
+                            mag-aaral.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -353,7 +383,7 @@
             }, 3000);
         }
 
-        function setupVideoPlayer(videoId, overlayClass) {
+        function setupVideoPlayer(videoId, overlayClass, toolName) {
             const video = document.getElementById(videoId);
             const overlay = document.querySelector(`.play-overlay[data-video="${overlayClass}"]`);
 
@@ -382,12 +412,13 @@
 
             video.addEventListener('ended', () => {
                 overlay.style.display = 'flex';
-                showToast(`Tapos na ang video! Pwede mo nang markahan ang Formative bilang completed.`);
+                showToast(`Tapos na ang video! Pwede mo nang markahan ang ${toolName} bilang completed.`);
             });
         }
 
-        // Setup video
-        setupVideoPlayer('videoFormative', 'formative');
+        // Setup both videos
+        setupVideoPlayer('videoFormative', 'formative', 'Formative');
+        setupVideoPlayer('videoTestportal', 'testportal', 'Testportal');
 
         // Dark Mode Toggle
         let isDarkMode = localStorage.getItem('pagsusulitTheme') === 'dark';
