@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="tl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <link rel="icon" type="image/png" href="/assets/images/TSU Logo.png" />
-    <title>PAGBUO NG AI INTEGRATED INSTRUCTIONAL TOOLKIT | Filipino 107 - TSU</title>
+    <title>DEVELOPMENT OF AI INTEGRATED INSTRUCTIONAL TOOLKIT | Filipino 107 - TSU</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -316,7 +316,7 @@
                 <img class="school-logo" src="assets/images/COE Logo.png" alt="COE Logo">
                 <div class="tsu-text">
                     <span>TARLAC STATE UNIVERSITY</span>
-                    <span>Kolehiyo ng Edukasyon</span>
+                    <span>College of Education</span>
                 </div>
                 <div class="logo-divider"></div>
                 <i class="fas fa-robot animate-pulse"></i>
@@ -328,11 +328,11 @@
             </button>
 
             <div class="nav-links" id="navLinks">
-                <a href="#features">Features</a>
-                <a href="#tools">AI Tools</a>
-                <a href="login.html" class="nav-cta-btn">Login</a>
+                <a href="#features" data-key="navFeatures">Features</a>
+                <a href="#tools" data-key="navTools">AI Tools</a>
+                <a href="login.html" class="nav-cta-btn" data-key="navLogin">Login</a>
                 <button id="langToggle" class="lang-toggle-btn">
-                    <i class="fas fa-globe"></i> Filipino
+                    <i class="fas fa-globe"></i> <span id="langToggleText">Filipino</span>
                 </button>
             </div>
         </div>
@@ -350,42 +350,38 @@
         <div class="hero-bg-gradient"></div>
         <div class="hero-content-full">
             <div class="hero-badge animate-fade-up" data-key="heroBadge">
-                <i class="fas fa-graduation-cap"></i> Tarlac State University | College of Teacher Education
+                <i class="fas fa-graduation-cap"></i> Tarlac State University | College of Education
             </div>
             <h1 class="hero-title-full animate-fade-left">
                 <span class="research-title-main" data-key="heroTitle1">
-                    PAGBUO NG AI INTEGRATED<br>
+                    DEVELOPMENT OF AI INTEGRATED<br>
                     INSTRUCTIONAL TOOLKIT
                 </span>
                 <span class="research-title-sub" data-key="heroTitle2">
-                    Batayan sa Inobatibong Pagtuturo ng Filipino 107
+                    Basis for Innovative Teaching of Filipino 107
                 </span>
             </h1>
             <p class="hero-description animate-fade-right" data-key="heroDesc">
-                Isang makabagong toolkit para sa pagtuturo ng Filipino 107 gamit ang 15 AI tools.
-                Dinisenyo para sa mga magiging guro ng Kolehiyo ng Edukasyon - Tarlac State University.
+                A modern toolkit for teaching Filipino 107 using 15 AI tools.
+                Designed for future teachers of the College of Education - Tarlac State University.
             </p>
             <div class="hero-buttons-pro animate-fade-up">
                 <a href="login.html" class="btn-primary-pro hover-scale" data-key="heroBtnStart">
-                    Simulan <i class="fas fa-arrow-right"></i>
+                    Get Started <i class="fas fa-arrow-right"></i>
                 </a>
                 <a href="#features" class="btn-secondary-pro hover-scale" data-key="heroBtnLearn">
-                    Alamin Pa <i class="fas fa-play"></i>
+                    Learn More <i class="fas fa-play"></i>
                 </a>
             </div>
             <div class="hero-stats stagger-children">
                 <div class="stat">
                     <span class="stat-number">15</span>
-                    <span class="stat-label" data-key="statTools">AI Kasangkapan</span>
+                    <span class="stat-label" data-key="statTools">AI Tools</span>
                 </div>
                 <div class="stat">
                     <span class="stat-number">15</span>
                     <span class="stat-label" data-key="statTuts">Tutorials</span>
                 </div>
-                <!-- <div class="stat">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label" data-key="statAccess">Access</span>
-                </div> -->
             </div>
         </div>
     </section>
@@ -394,43 +390,41 @@
     <section id="features" class="features-pro">
         <div class="container">
             <div class="section-header scroll-reveal">
-                <span class="section-tag" data-key="featuresTag">Mga Tampok ng Toolkit</span>
-                <h2 data-key="featuresTitle">Lahat ng Kailangan sa Makabagong Pagtuturo ng Filipino</h2>
-                <p data-key="featuresSub">Espesyal na ginawa para sa Filipino 107 - Inobatibong Pagtuturo ng Filipino
-                </p>
+                <span class="section-tag" data-key="featuresTag">Toolkit Features</span>
+                <h2 data-key="featuresTitle">Everything You Need for Modern Filipino Teaching</h2>
+                <p data-key="featuresSub">Specially designed for Filipino 107 - Innovative Teaching of Filipino</p>
             </div>
             <div class="features-grid-pro">
                 <div class="feature-card-pro hover-lift hover-glow scroll-reveal">
                     <div class="feature-icon-pro"><i class="fas fa-layer-group"></i></div>
-                    <h3 data-key="feature1Title">15 AI Kasangkapan</h3>
-                    <p data-key="feature1Desc">Kompletong tutorial para sa mga sikat na AI tools na pwedeng gamitin sa
-                        pagtuturo ng Filipino</p>
+                    <h3 data-key="feature1Title">15 AI Tools</h3>
+                    <p data-key="feature1Desc">Complete tutorials for popular AI tools that can be used in teaching
+                        Filipino</p>
                 </div>
                 <div class="feature-card-pro hover-lift hover-glow scroll-reveal">
                     <div class="feature-icon-pro"><i class="fas fa-video"></i></div>
-                    <h3 data-key="feature2Title">Video Tutorial sa Filipino</h3>
-                    <p data-key="feature2Desc">Step-by-step video guides na naka-Filipino para madaling maintindihan</p>
+                    <h3 data-key="feature2Title">Video Tutorials in Filipino</h3>
+                    <p data-key="feature2Desc">Step-by-step video guides in Filipino for easy understanding</p>
                 </div>
                 <div class="feature-card-pro hover-lift hover-glow scroll-reveal">
                     <div class="feature-icon-pro"><i class="fas fa-chalkboard"></i></div>
-                    <h3 data-key="feature3Title">Inobatibong Estratehiya</h3>
-                    <p data-key="feature3Desc">Mga halimbawa ng leksyon gamit ang AI sa pagtuturo ng Filipino</p>
+                    <h3 data-key="feature3Title">Innovative Strategies</h3>
+                    <p data-key="feature3Desc">Sample lessons using AI in teaching Filipino</p>
                 </div>
                 <div class="feature-card-pro hover-lift hover-glow scroll-reveal">
                     <div class="feature-icon-pro"><i class="fas fa-star"></i></div>
-                    <h3 data-key="feature4Title">Mga Paborito</h3>
-                    <p data-key="feature4Desc">I-bookmark ang mga madalas gamiting AI tools para sa mabilis na access
-                    </p>
+                    <h3 data-key="feature4Title">Favorites</h3>
+                    <p data-key="feature4Desc">Bookmark frequently used AI tools for quick access</p>
                 </div>
                 <div class="feature-card-pro hover-lift hover-glow scroll-reveal">
                     <div class="feature-icon-pro"><i class="fas fa-chart-line"></i></div>
-                    <h3 data-key="feature5Title">Pagsubaybay sa Progreso</h3>
-                    <p data-key="feature5Desc">Subaybayan ang iyong natapos na mga tutorial at learning journey</p>
+                    <h3 data-key="feature5Title">Progress Tracking</h3>
+                    <p data-key="feature5Desc">Track your completed tutorials and learning journey</p>
                 </div>
                 <div class="feature-card-pro hover-lift hover-glow scroll-reveal">
                     <div class="feature-icon-pro"><i class="fas fa-moon"></i></div>
                     <h3 data-key="feature6Title">Dark Mode</h3>
-                    <p data-key="feature6Desc">Komportableng pag-aaral kahit gabi na may dark/light mode toggle</p>
+                    <p data-key="feature6Desc">Comfortable studying even at night with dark/light mode toggle</p>
                 </div>
             </div>
         </div>
@@ -441,117 +435,72 @@
         <div class="container">
             <div class="showcase-wrapper">
                 <div class="showcase-content scroll-reveal">
-                    <span class="section-tag">Kolehiyo ng Edukasyon</span>
-                    <h2>College of Teacher Education</h2>
-                    <p>Ang Kolehiyo ng Edukasyon ng Tarlac State University ay nangunguna sa paghubog ng mga de-kalidad
-                        at makabayang guro na handang harapin ang mga hamon ng 21st century learning.</p>
+                    <span class="section-tag" data-key="collegeTag">College of Education</span>
+                    <h2 data-key="collegeTitle">College of Education</h2>
+                    <p data-key="collegeDesc">The College of Education of Tarlac State University leads in shaping
+                        quality and patriotic teachers ready to face the challenges of 21st century learning.</p>
                     <div class="showcase-features">
                         <div class="showcase-feature hover-scale">
                             <i class="fas fa-check-circle"></i>
-                            <span>CHED Center of Excellence</span>
+                            <span data-key="accred1">CHED Center of Excellence</span>
                         </div>
                         <div class="showcase-feature hover-scale">
                             <i class="fas fa-check-circle"></i>
-                            <span>PACUCOA Accredited Programs</span>
+                            <span data-key="accred2">PACUCOA Accredited Programs</span>
                         </div>
                         <div class="showcase-feature hover-scale">
                             <i class="fas fa-check-circle"></i>
-                            <span>Industry-Aligned Curriculum</span>
+                            <span data-key="accred3">Industry-Aligned Curriculum</span>
                         </div>
                     </div>
                 </div>
                 <div class="showcase-image hover-lift scroll-reveal">
                     <img src="assets/images/COED_Building_Bottom.png" alt="CTE Building">
-                    <div class="image-caption">College of Teacher Education Building</div>
+                    <div class="image-caption" data-key="imageCaption">College of Education Building</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tools Preview Section - ALL NEW AI TOOLS (Based on Client's List) -->
+    <!-- Tools Preview Section - ALL NEW AI TOOLS -->
     <section id="tools" class="tools-preview-pro">
         <div class="container">
             <div class="section-header scroll-reveal">
-                <span class="section-tag" data-key="toolsTag">AI Kasangkapan para sa Filipino</span>
-                <h2 data-key="toolsTitle">15 Makabagong AI Tools</h2>
-                <p data-key="toolsSub">Mula sa sketch hanggang sa pagsusulit - nandito lahat</p>
+                <span class="section-tag" data-key="toolsTag">AI Tools for Filipino</span>
+                <h2 data-key="toolsTitle">15 Modern AI Tools</h2>
+                <p data-key="toolsSub">From sketch to assessment - everything is here</p>
             </div>
             <div class="tools-grid-preview stagger-children">
-                <!-- 1 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-paintbrush animate-float"></i>
-                    <span>AutoDraw</span>
-                </div>
-                <!-- 2 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-magic animate-float"></i>
-                    <span>Dreamina AI</span>
-                </div>
-                <!-- 3 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-brain animate-float"></i>
-                    <span>MindMeister</span>
-                </div>
-                <!-- 4 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-chart-simple animate-float"></i>
-                    <span>Whimsical</span>
-                </div>
-                <!-- 5 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-chart-pie animate-float"></i>
-                    <span>Visme</span>
-                </div>
-                <!-- 6 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-cube animate-float"></i>
-                    <span>Framer</span>
-                </div>
-                <!-- 7 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-table-cells-large animate-float"></i>
-                    <span>Notion</span>
-                </div>
-                <!-- 8 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-feather animate-float"></i>
-                    <span>Jenni AI</span>
-                </div>
-                <!-- 9 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-book-open animate-float"></i>
-                    <span>Entries</span>
-                </div>
-                <!-- 10 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-sitemap animate-float"></i>
-                    <span>Coggle It</span>
-                </div>
-                <!-- 11 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-pen-fancy animate-float"></i>
-                    <span>Canva Magic Design</span>
-                </div>
-                <!-- 12 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-chalkboard-user animate-float"></i>
-                    <span>Lesson Planner PH</span>
-                </div>
-                <!-- 13 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-clipboard-question animate-float"></i>
-                    <span>Formative</span>
-                </div>
-                <!-- 14 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-square-poll-vertical animate-float"></i>
-                    <span>Testportal</span>
-                </div>
-                <!-- 15 -->
-                <div class="tool-preview-card hover-lift hover-glow">
-                    <i class="fas fa-gamepad animate-float"></i>
-                    <span>Rosebud</span>
-                </div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-paintbrush animate-float"></i><span>AutoDraw</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-magic animate-float"></i><span>Dreamina AI</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-brain animate-float"></i><span>MindMeister</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-chart-simple animate-float"></i><span>Whimsical</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-chart-pie animate-float"></i><span>Visme</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-cube animate-float"></i><span>Framer</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-table-cells-large animate-float"></i><span>Notion</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-feather animate-float"></i><span>Jenni AI</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-book-open animate-float"></i><span>Entries</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-sitemap animate-float"></i><span>Coggle It</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-pen-fancy animate-float"></i><span>Canva Magic Design</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-chalkboard-user animate-float"></i><span>Lesson Planner PH</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-clipboard-question animate-float"></i><span>Formative</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-square-poll-vertical animate-float"></i><span>Testportal</span></div>
+                <div class="tool-preview-card hover-lift hover-glow"><i
+                        class="fas fa-gamepad animate-float"></i><span>Rosebud</span></div>
             </div>
         </div>
     </section>
@@ -560,32 +509,28 @@
     <section class="research-obj">
         <div class="container">
             <div class="section-header scroll-reveal">
-                <span class="section-tag">Layunin ng Pananaliksik</span>
-                <h2>Research Objectives</h2>
-                <p>Mga pangunahing layunin ng pagbuo ng AI Integrated Instructional Toolkit</p>
+                <span class="section-tag" data-key="researchTag">Research Objectives</span>
+                <h2 data-key="researchTitle">Research Objectives</h2>
+                <p data-key="researchSub">The main objectives of developing the AI Integrated Instructional Toolkit</p>
             </div>
             <div class="objectives-grid">
                 <div class="objective-card hover-lift scroll-reveal">
                     <div class="objective-number">1</div>
-                    <!-- <h3>Pagbuo ng Toolkit</h3> -->
-                    <p>Matukoy ang iba’t ibang AI application na maaaring gamitin ng pagtuturo sa Filipino 107
-                        Paghahanda at Ebalwasyon ng Kagamitang Panturo</p>
+                    <p data-key="obj1">Identify the different AI applications that can be used in teaching Filipino 107
+                        - Preparation and Evaluation of Instructional Materials.</p>
                 </div>
                 <div class="objective-card hover-lift scroll-reveal">
                     <div class="objective-number">2</div>
-                    <!-- <h3>Pagsusuri ng Epektibidad</h3> -->
-                    <p>Makabuo ng isang AI integrated Instructional toolkit na batay sa mga kasanayang pagkatuto sa
-                        Filipino 107 Paghahanda at Ebalwasyon ng Kagamitang Panturo.</p>
+                    <p data-key="obj2">Develop an AI integrated instructional toolkit based on the learning competencies
+                        in Filipino 107 - Preparation and Evaluation of Instructional Materials.</p>
                 </div>
                 <div class="objective-card hover-lift scroll-reveal">
                     <div class="objective-number">2.1</div>
-                    <!-- <h3>Paglinang ng Kasanayan</h3> -->
-                    <p>Prinsipyo ng inobatatibong pagtuturo;</p>
+                    <p data-key="obj21">Principles of innovative teaching;</p>
                 </div>
                 <div class="objective-card hover-lift scroll-reveal">
                     <div class="objective-number">2.2</div>
-                    <!-- <h3>Paglinang ng Kasanayan</h3> -->
-                    <p>Kaangkupan ng integrasyon ng AI sa pagtuturo;</p>
+                    <p data-key="obj22">Appropriateness of AI integration in teaching;</p>
                 </div>
             </div>
         </div>
@@ -597,26 +542,26 @@
             <div class="footer-logo scroll-reveal">
                 <i class="fas fa-robot animate-float"></i>
                 <span data-key="footerTitle">AI Integrated Instructional Toolkit</span>
-                <p data-key="footerSub">Filipino 107 - Inobatibong Pagtuturo ng Filipino</p>
-                <p class="mt-1">Tarlac State University | KOLEHIYO NG EDUKASYON</p>
-                <p class="mt-1"><small data-key="footerResearch">Isang proyektong pananaliksik para sa inobatibong
-                        pagtuturo ng Filipino</small></p>
+                <p data-key="footerSub">Filipino 107 - Innovative Teaching of Filipino</p>
+                <p class="mt-1">Tarlac State University | COLLEGE OF EDUCATION</p>
+                <p class="mt-1"><small data-key="footerResearch">A research project for innovative teaching of
+                        Filipino</small></p>
             </div>
             <div class="footer-links">
                 <div class="link-group scroll-reveal">
                     <h4 data-key="footerMenu">Menu</h4>
-                    <a href="#features" class="hover-scale" data-key="footerFeatures">Mga Tampok</a>
-                    <a href="#tools" class="hover-scale" data-key="footerTools">AI Kasangkapan</a>
-                    <a href="login.html" class="hover-scale" data-key="footerLogin">Mag-login</a>
+                    <a href="#features" class="hover-scale" data-key="footerFeatures">Features</a>
+                    <a href="#tools" class="hover-scale" data-key="footerTools">AI Tools</a>
+                    <a href="login.html" class="hover-scale" data-key="footerLogin">Login</a>
                 </div>
                 <div class="link-group scroll-reveal">
-                    <h4 data-key="footerSupport">Suporta</h4>
+                    <h4 data-key="footerSupport">Support</h4>
                     <a href="#" class="hover-scale" data-key="footerHelp">Help Center</a>
-                    <a href="#" class="hover-scale" data-key="footerContact">Makipag-ugnayan</a>
+                    <a href="#" class="hover-scale" data-key="footerContact">Contact Us</a>
                 </div>
                 <div class="link-group scroll-reveal">
                     <h4 data-key="footerLegal">Legal</h4>
-                    <a href="#" class="hover-scale" data-key="footerPrivacy">Patakaran sa Privacy</a>
+                    <a href="#" class="hover-scale" data-key="footerPrivacy">Privacy Policy</a>
                     <a href="#" class="hover-scale" data-key="footerTerms">Terms of Use</a>
                 </div>
             </div>
@@ -624,7 +569,7 @@
         <div class="footer-bottom scroll-reveal">
             <p data-key="footerCopyright">© 2024 AI Integrated Instructional Toolkit | Filipino 107 - Tarlac State
                 University</p>
-            <p><small>KOLEHIYO NG EDUKASYON | College of Education</small></p>
+            <p><small data-key="footerCollege">COLLEGE OF EDUCATION</small></p>
         </div>
     </footer>
 
@@ -633,11 +578,183 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="script.js"></script>
-    <script src="translations.js"></script>
-
     <script>
+        // ========== TRANSLATIONS ==========
+        const translations = {
+            en: {
+                langToggleText: "Filipino",
+                navFeatures: "Features",
+                navTools: "AI Tools",
+                navLogin: "Login",
+                heroBadge: "Tarlac State University | College of Education",
+                heroTitle1: "DEVELOPMENT OF AI INTEGRATED<br>INSTRUCTIONAL TOOLKIT",
+                heroTitle2: "Basis for Innovative Teaching of Filipino 107",
+                heroDesc: "A modern toolkit for teaching Filipino 107 using 15 AI tools. Designed for future teachers of the College of Education - Tarlac State University.",
+                heroBtnStart: "Get Started",
+                heroBtnLearn: "Learn More",
+                statTools: "AI Tools",
+                statTuts: "Tutorials",
+                featuresTag: "Toolkit Features",
+                featuresTitle: "Everything You Need for Modern Filipino Teaching",
+                featuresSub: "Specially designed for Filipino 107 - Innovative Teaching of Filipino",
+                feature1Title: "15 AI Tools",
+                feature1Desc: "Complete tutorials for popular AI tools that can be used in teaching Filipino",
+                feature2Title: "Video Tutorials in Filipino",
+                feature2Desc: "Step-by-step video guides in Filipino for easy understanding",
+                feature3Title: "Innovative Strategies",
+                feature3Desc: "Sample lessons using AI in teaching Filipino",
+                feature4Title: "Favorites",
+                feature4Desc: "Bookmark frequently used AI tools for quick access",
+                feature5Title: "Progress Tracking",
+                feature5Desc: "Track your completed tutorials and learning journey",
+                feature6Title: "Dark Mode",
+                feature6Desc: "Comfortable studying even at night with dark/light mode toggle",
+                collegeTag: "College of Education",
+                collegeTitle: "College of Education",
+                collegeDesc: "The College of Education of Tarlac State University leads in shaping quality and patriotic teachers ready to face the challenges of 21st century learning.",
+                accred1: "CHED Center of Excellence",
+                accred2: "PACUCOA Accredited Programs",
+                accred3: "Industry-Aligned Curriculum",
+                imageCaption: "College of Education Building",
+                toolsTag: "AI Tools for Filipino",
+                toolsTitle: "15 Modern AI Tools",
+                toolsSub: "From sketch to assessment - everything is here",
+                researchTag: "Research Objectives",
+                researchTitle: "Research Objectives",
+                researchSub: "The main objectives of developing the AI Integrated Instructional Toolkit",
+                obj1: "Identify the different AI applications that can be used in teaching Filipino 107 - Preparation and Evaluation of Instructional Materials.",
+                obj2: "Develop an AI integrated instructional toolkit based on the learning competencies in Filipino 107 - Preparation and Evaluation of Instructional Materials.",
+                obj21: "Principles of innovative teaching;",
+                obj22: "Appropriateness of AI integration in teaching;",
+                footerTitle: "AI Integrated Instructional Toolkit",
+                footerSub: "Filipino 107 - Innovative Teaching of Filipino",
+                footerResearch: "A research project for innovative teaching of Filipino",
+                footerMenu: "Menu",
+                footerFeatures: "Features",
+                footerTools: "AI Tools",
+                footerLogin: "Login",
+                footerSupport: "Support",
+                footerHelp: "Help Center",
+                footerContact: "Contact Us",
+                footerLegal: "Legal",
+                footerPrivacy: "Privacy Policy",
+                footerTerms: "Terms of Use",
+                footerCopyright: "© 2024 AI Integrated Instructional Toolkit | Filipino 107 - Tarlac State University",
+                footerCollege: "COLLEGE OF EDUCATION"
+            },
+            fil: {
+                langToggleText: "English",
+                navFeatures: "Mga Tampok",
+                navTools: "AI Kasangkapan",
+                navLogin: "Mag-login",
+                heroBadge: "Tarlac State University | Kolehiyo ng Edukasyon",
+                heroTitle1: "PAGBUO NG AI INTEGRATED<br>INSTRUCTIONAL TOOLKIT",
+                heroTitle2: "Batayan sa Inobatibong Pagtuturo ng Filipino 107",
+                heroDesc: "Isang makabagong toolkit para sa pagtuturo ng Filipino 107 gamit ang 15 AI tools. Dinisenyo para sa mga magiging guro ng Kolehiyo ng Edukasyon - Tarlac State University.",
+                heroBtnStart: "Simulan",
+                heroBtnLearn: "Alamin Pa",
+                statTools: "AI Kasangkapan",
+                statTuts: "Tutorials",
+                featuresTag: "Mga Tampok ng Toolkit",
+                featuresTitle: "Lahat ng Kailangan sa Makabagong Pagtuturo ng Filipino",
+                featuresSub: "Espesyal na ginawa para sa Filipino 107 - Inobatibong Pagtuturo ng Filipino",
+                feature1Title: "15 AI Kasangkapan",
+                feature1Desc: "Kompletong tutorial para sa mga sikat na AI tools na pwedeng gamitin sa pagtuturo ng Filipino",
+                feature2Title: "Video Tutorial sa Filipino",
+                feature2Desc: "Step-by-step video guides na naka-Filipino para madaling maintindihan",
+                feature3Title: "Inobatibong Estratehiya",
+                feature3Desc: "Mga halimbawa ng leksyon gamit ang AI sa pagtuturo ng Filipino",
+                feature4Title: "Mga Paborito",
+                feature4Desc: "I-bookmark ang mga madalas gamiting AI tools para sa mabilis na access",
+                feature5Title: "Pagsubaybay sa Progreso",
+                feature5Desc: "Subaybayan ang iyong natapos na mga tutorial at learning journey",
+                feature6Title: "Dark Mode",
+                feature6Desc: "Komportableng pag-aaral kahit gabi na may dark/light mode toggle",
+                collegeTag: "Kolehiyo ng Edukasyon",
+                collegeTitle: "Kolehiyo ng Edukasyon",
+                collegeDesc: "Ang Kolehiyo ng Edukasyon ng Tarlac State University ay nangunguna sa paghubog ng mga de-kalidad at makabayang guro na handang harapin ang mga hamon ng 21st century learning.",
+                accred1: "CHED Center of Excellence",
+                accred2: "PACUCOA Accredited Programs",
+                accred3: "Industry-Aligned Curriculum",
+                imageCaption: "Gusali ng Kolehiyo ng Edukasyon",
+                toolsTag: "AI Kasangkapan para sa Filipino",
+                toolsTitle: "15 Makabagong AI Tools",
+                toolsSub: "Mula sa sketch hanggang sa pagsusulit - nandito lahat",
+                researchTag: "Layunin ng Pananaliksik",
+                researchTitle: "Layunin ng Pananaliksik",
+                researchSub: "Mga pangunahing layunin ng pagbuo ng AI Integrated Instructional Toolkit",
+                obj1: "Matukoy ang iba't ibang AI application na maaaring gamitin ng pagtuturo sa Filipino 107 Paghahanda at Ebalwasyon ng Kagamitang Panturo",
+                obj2: "Makabuo ng isang AI integrated Instructional toolkit na batay sa mga kasanayang pagkatuto sa Filipino 107 Paghahanda at Ebalwasyon ng Kagamitang Panturo.",
+                obj21: "Prinsipyo ng inobatatibong pagtuturo;",
+                obj22: "Kaangkupan ng integrasyon ng AI sa pagtuturo;",
+                footerTitle: "AI Integrated Instructional Toolkit",
+                footerSub: "Filipino 107 - Inobatibong Pagtuturo ng Filipino",
+                footerResearch: "Isang proyektong pananaliksik para sa inobatibong pagtuturo ng Filipino",
+                footerMenu: "Menu",
+                footerFeatures: "Mga Tampok",
+                footerTools: "AI Kasangkapan",
+                footerLogin: "Mag-login",
+                footerSupport: "Suporta",
+                footerHelp: "Help Center",
+                footerContact: "Makipag-ugnayan",
+                footerLegal: "Legal",
+                footerPrivacy: "Patakaran sa Privacy",
+                footerTerms: "Terms of Use",
+                footerCopyright: "© 2024 AI Integrated Instructional Toolkit | Filipino 107 - Tarlac State University",
+                footerCollege: "KOLEHIYO NG EDUKASYON"
+            }
+        };
+
+        let currentLang = localStorage.getItem("landingLang") || "en";
+
+        function applyTranslations() {
+            const t = translations[currentLang];
+            if (!t) return;
+
+            document.getElementById("langToggleText").textContent = t.langToggleText;
+
+            document.querySelectorAll("[data-key]").forEach(el => {
+                const key = el.getAttribute("data-key");
+                if (t[key]) {
+                    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+                        el.placeholder = t[key];
+                    } else if (el.tagName === "BUTTON" && el.querySelector("i")) {
+                        // Preserve icon
+                        const icon = el.querySelector("i");
+                        if (icon) {
+                            el.innerHTML = "";
+                            el.appendChild(icon);
+                            el.appendChild(document.createTextNode(" " + t[key]));
+                        } else {
+                            el.textContent = t[key];
+                        }
+                    } else {
+                        el.innerHTML = t[key];
+                    }
+                }
+            });
+        }
+
+        function initLanguageToggle() {
+            const langToggle = document.getElementById("langToggle");
+            if (langToggle) {
+                langToggle.addEventListener("click", function () {
+                    currentLang = currentLang === "en" ? "fil" : "en";
+                    localStorage.setItem("landingLang", currentLang);
+                    applyTranslations();
+                });
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
+            // Apply saved language
+            const savedLang = localStorage.getItem("landingLang");
+            if (savedLang) {
+                currentLang = savedLang;
+            }
+            applyTranslations();
+            initLanguageToggle();
+
             // Mobile menu toggle
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navLinks = document.getElementById('navLinks');

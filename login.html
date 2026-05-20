@@ -738,6 +738,7 @@
                     if (email === VALID_EMAIL && password === VALID_PASSWORD) {
                         localStorage.setItem("isLoggedIn", "true");
                         localStorage.setItem("userEmail", email);
+                        localStorage.setItem("loginTime", new Date().getTime()); // ADD THIS LINE
 
                         if (rememberMe) {
                             localStorage.setItem("rememberMe", "true");

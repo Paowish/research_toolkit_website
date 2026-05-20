@@ -133,6 +133,7 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            position: relative;
         }
 
         body.dark-mode .video-card {
@@ -166,6 +167,13 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            transition: opacity 0.3s;
+            z-index: 5;
+        }
+
+        .video-wrapper.playing .play-overlay {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .play-overlay:hover {
@@ -192,6 +200,34 @@
             font-size: 2rem;
             color: #8B0000;
             margin-left: 5px;
+        }
+
+        .video-error {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            z-index: 4;
+        }
+
+        .video-error i {
+            font-size: 3rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
+        }
+
+        .video-error p {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
         }
 
         .video-info {
@@ -233,6 +269,99 @@
             color: #c0c0c0;
         }
 
+        /* Video Progress Stats */
+        .video-progress-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        .watch-percentage {
+            background: rgba(139, 0, 0, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #8B0000;
+        }
+
+        body.dark-mode .watch-percentage {
+            background: rgba(244, 180, 0, 0.2);
+            color: #F4B400;
+        }
+
+        .auto-complete-badge {
+            background: #28a745;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .mark-complete-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #8B0000, #C89000);
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .mark-complete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.3);
+        }
+
+        .mark-complete-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .mark-complete-btn.auto-completed {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .completed-badge-video {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #F4B400, #8B0000);
+            width: 0%;
+            transition: width 0.3s linear;
+            z-index: 6;
+        }
+
         .footer {
             background: #8B0000;
             color: white;
@@ -257,6 +386,7 @@
             align-items: center;
             gap: 10px;
             z-index: 1000;
+            font-size: 0.9rem;
         }
 
         @keyframes fadeInUp {
@@ -284,9 +414,11 @@
                 <i class="fas fa-robot"></i>
                 <span>AI Instructional Toolkit | Filipino 107</span>
             </div>
-            <button class="back-btn" onclick="window.location.href='/dashboard.html'">
-                <i class="fas fa-arrow-left"></i> Bumalik sa Dashboard
-            </button>
+            <div style="display: flex; gap: 1rem;">
+                <button class="back-btn" onclick="window.location.href='../../dashboard.html'">
+                    <i class="fas fa-arrow-left"></i> Bumalik sa Dashboard
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -298,10 +430,9 @@
     <div class="video-container">
         <div class="video-grid">
             <!-- AutoDraw Video Card -->
-            <div class="video-card" data-tool="autodraw">
-                <div class="video-wrapper">
-                    <video id="videoAutodraw"
-                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%238B0000'/%3E%3Ctext x='320' y='180' text-anchor='middle' fill='%23F4B400' font-size='24' font-weight='bold'%3EAUTODRAW%3C/text%3E%3Ctext x='320' y='220' text-anchor='middle' fill='white' font-size='16'%3EAutoDraw AI Tutorial%3C/text%3E%3C/svg%3E">
+            <div class="video-card" id="card-autodraw" data-tool="autodraw">
+                <div class="video-wrapper" id="wrapper-autodraw">
+                    <video id="videoAutodraw" data-tool-id="autodraw" preload="metadata" controls>
                         <source src="AUTODRAW.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -310,6 +441,7 @@
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
+                    <div class="video-progress" id="progress-autodraw"></div>
                 </div>
                 <div class="video-info">
                     <div class="tool-badge">
@@ -324,14 +456,20 @@
                         <p style="margin-top: 0.5rem;"><strong>📌 Gamit sa Pagtuturo:</strong> Paggawa ng visual aids,
                             larawan para sa kwento, at interactive na materials sa Filipino.</p>
                     </div>
+                    <div class="video-progress-stats">
+                        <span class="watch-percentage" id="percent-autodraw">0% napanood</span>
+                        <span class="auto-complete-badge" id="auto-badge-autodraw">✓ Awtomatikong tapos</span>
+                    </div>
+                    <button class="mark-complete-btn" id="btn-autodraw" onclick="markVideoComplete('autodraw')">
+                        <i class="fas fa-check-circle"></i> Markahan bilang Tapos
+                    </button>
                 </div>
             </div>
 
             <!-- Dreamina AI Video Card -->
-            <div class="video-card" data-tool="dreamina">
-                <div class="video-wrapper">
-                    <video id="videoDreamina"
-                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%238B0000'/%3E%3Ctext x='320' y='180' text-anchor='middle' fill='%23F4B400' font-size='24' font-weight='bold'%3EDREAMINA%3C/text%3E%3Ctext x='320' y='220' text-anchor='middle' fill='white' font-size='16'%3EDreamina AI Tutorial%3C/text%3E%3C/svg%3E">
+            <div class="video-card" id="card-dreamina" data-tool="dreamina">
+                <div class="video-wrapper" id="wrapper-dreamina">
+                    <video id="videoDreamina" data-tool-id="dreamina" preload="metadata" controls>
                         <source src="DREAMINA F.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -340,6 +478,7 @@
                             <i class="fas fa-play"></i>
                         </div>
                     </div>
+                    <div class="video-progress" id="progress-dreamina"></div>
                 </div>
                 <div class="video-info">
                     <div class="tool-badge">
@@ -354,6 +493,13 @@
                         <p style="margin-top: 0.5rem;"><strong>📌 Gamit sa Pagtuturo:</strong> Pagbuo ng mga larawan
                             mula sa deskripsyon, visual interpretation, at creative writing activities.</p>
                     </div>
+                    <div class="video-progress-stats">
+                        <span class="watch-percentage" id="percent-dreamina">0% napanood</span>
+                        <span class="auto-complete-badge" id="auto-badge-dreamina">✓ Awtomatikong tapos</span>
+                    </div>
+                    <button class="mark-complete-btn" id="btn-dreamina" onclick="markVideoComplete('dreamina')">
+                        <i class="fas fa-check-circle"></i> Markahan bilang Tapos
+                    </button>
                 </div>
             </div>
         </div>
@@ -370,6 +516,124 @@
     </div>
 
     <script>
+        // Dashboard tool ID for this category
+        const DASHBOARD_TOOL_ID = "sketch";
+        const COMPLETE_THRESHOLD = 90; // Mark as complete when 90% watched
+
+        // Video progress storage (percentage watched for each video)
+        let videoProgress = {
+            autodraw: 0,
+            dreamina: 0
+        };
+
+        let videoWatchedStatus = {
+            autodraw: false,
+            dreamina: false
+        };
+
+        function loadVideoStatus() {
+            const savedProgress = localStorage.getItem("videoProgressSketch");
+            if (savedProgress) {
+                videoProgress = JSON.parse(savedProgress);
+            }
+
+            const savedWatched = localStorage.getItem("videoWatchedStatusSketch");
+            if (savedWatched) {
+                videoWatchedStatus = JSON.parse(savedWatched);
+            }
+
+            updateUIForCompletedVideos();
+            updateAllProgressDisplays();
+        }
+
+        function saveVideoStatus() {
+            localStorage.setItem("videoProgressSketch", JSON.stringify(videoProgress));
+            localStorage.setItem("videoWatchedStatusSketch", JSON.stringify(videoWatchedStatus));
+        }
+
+        function updateAllProgressDisplays() {
+            for (const [toolId, percent] of Object.entries(videoProgress)) {
+                const percentSpan = document.getElementById(`percent-${toolId}`);
+                const progressBar = document.getElementById(`progress-${toolId}`);
+                const autoBadge = document.getElementById(`auto-badge-${toolId}`);
+
+                if (percentSpan) {
+                    percentSpan.textContent = `${Math.round(percent)}% napanood`;
+                    if (percent >= COMPLETE_THRESHOLD) {
+                        percentSpan.style.background = "#28a745";
+                        percentSpan.style.color = "white";
+                    }
+                }
+                if (progressBar) {
+                    progressBar.style.width = `${percent}%`;
+                }
+                if (autoBadge && percent >= COMPLETE_THRESHOLD && !videoWatchedStatus[toolId]) {
+                    autoBadge.style.display = "inline-block";
+                }
+            }
+        }
+
+        function updateUIForCompletedVideos() {
+            for (const [toolId, isCompleted] of Object.entries(videoWatchedStatus)) {
+                if (isCompleted) {
+                    const card = document.getElementById(`card-${toolId}`);
+                    const btn = document.getElementById(`btn-${toolId}`);
+                    const percentSpan = document.getElementById(`percent-${toolId}`);
+                    const autoBadge = document.getElementById(`auto-badge-${toolId}`);
+                    const progressBar = document.getElementById(`progress-${toolId}`);
+
+                    if (card && !card.querySelector('.completed-badge-video')) {
+                        const badge = document.createElement('div');
+                        badge.className = 'completed-badge-video';
+                        badge.innerHTML = '<i class="fas fa-check-circle"></i> Tapos na!';
+                        card.style.position = 'relative';
+                        card.appendChild(badge);
+                    }
+
+                    if (btn) {
+                        btn.innerHTML = '<i class="fas fa-check-circle"></i> Tapos na!';
+                        btn.disabled = true;
+                        btn.classList.add('auto-completed');
+                    }
+                    if (percentSpan) {
+                        percentSpan.textContent = `100% napanood ✓`;
+                        percentSpan.style.background = "#28a745";
+                        percentSpan.style.color = "white";
+                    }
+                    if (autoBadge) {
+                        autoBadge.style.display = "inline-block";
+                    }
+                    if (progressBar) {
+                        progressBar.style.width = "100%";
+                    }
+                }
+            }
+        }
+
+        function markVideoComplete(toolId) {
+            if (videoWatchedStatus[toolId]) {
+                showToast("Markado na ito bilang tapos!", true);
+                return;
+            }
+
+            videoWatchedStatus[toolId] = true;
+            videoProgress[toolId] = 100;
+            saveVideoStatus();
+            updateUIForCompletedVideos();
+            updateAllProgressDisplays();
+
+            // Save to dashboard
+            let progress = JSON.parse(localStorage.getItem("toolProgress") || "{}");
+            if (!progress[DASHBOARD_TOOL_ID]) {
+                progress[DASHBOARD_TOOL_ID] = { completed: false, favorite: false };
+            }
+            progress[DASHBOARD_TOOL_ID].completed = true;
+            localStorage.setItem("toolProgress", JSON.stringify(progress));
+            localStorage.setItem("dashboardNeedsRefresh", "true");
+
+            showToast(`✅ Tapos na! Naitala na ang progreso para sa Sketch.`, true);
+        }
+
         function showToast(message, isSuccess = true) {
             const toast = document.getElementById('toast');
             toast.querySelector('span').textContent = message;
@@ -380,44 +644,113 @@
             }, 3000);
         }
 
-        function setupVideoPlayer(videoId, overlayClass) {
+        function setupVideoPlayer(videoId, toolName) {
             const video = document.getElementById(videoId);
-            const overlay = document.querySelector(`.play-overlay[data-video="${overlayClass}"]`);
+            const wrapper = document.getElementById(`wrapper-${toolName}`);
+            const overlay = document.querySelector(`.play-overlay[data-video="${toolName}"]`);
+            const progressBar = document.getElementById(`progress-${toolName}`);
 
-            if (!video || !overlay) return;
+            if (!video) {
+                console.error(`Video element ${videoId} not found`);
+                return;
+            }
 
-            function togglePlay() {
-                if (video.paused) {
-                    video.play();
-                    overlay.style.display = 'none';
-                } else {
-                    video.pause();
-                    overlay.style.display = 'flex';
+            // Restore saved progress position
+            if (videoProgress[toolName] && videoProgress[toolName] > 0 && videoProgress[toolName] < 100 && video.duration) {
+                video.currentTime = (videoProgress[toolName] / 100) * video.duration;
+            }
+
+            video.addEventListener('error', function (e) {
+                console.error(`Video error for ${toolName}:`, e);
+                showToast(`Hindi ma-load ang video para sa ${toolName.toUpperCase()}. Pakisiguradong nasa tamang folder ang video file.`, false);
+
+                if (wrapper) {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'video-error';
+                    errorDiv.innerHTML = `
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Hindi ma-load ang video file</p>
+                        <small>Paki-check kung ang video file ay nasa tamang folder.</small>
+                    `;
+                    wrapper.appendChild(errorDiv);
+                }
+            });
+
+            function saveCurrentProgress() {
+                if (video.duration && !isNaN(video.duration)) {
+                    const percent = (video.currentTime / video.duration) * 100;
+                    videoProgress[toolName] = percent;
+                    saveVideoStatus();
+                    updateAllProgressDisplays();
+
+                    // Auto-mark complete if watched 90% or more
+                    if (percent >= COMPLETE_THRESHOLD && !videoWatchedStatus[toolName]) {
+                        markVideoComplete(toolName);
+                    }
                 }
             }
 
-            video.addEventListener('click', togglePlay);
-            overlay.addEventListener('click', togglePlay);
+            function togglePlay() {
+                if (video.paused) {
+                    video.play().catch(e => {
+                        console.error('Playback error:', e);
+                        showToast('Hindi ma-play ang video. Pakisubukan muli.', false);
+                    });
+                    if (wrapper) wrapper.classList.add('playing');
+                } else {
+                    video.pause();
+                    if (wrapper) wrapper.classList.remove('playing');
+                    saveCurrentProgress();
+                }
+            }
 
-            video.addEventListener('pause', () => {
-                overlay.style.display = 'flex';
-            });
+            if (overlay) {
+                overlay.addEventListener('click', togglePlay);
+            }
+            video.addEventListener('click', togglePlay);
 
             video.addEventListener('play', () => {
-                overlay.style.display = 'none';
+                if (wrapper) wrapper.classList.add('playing');
+                if (overlay) overlay.style.display = 'none';
+            });
+
+            video.addEventListener('pause', () => {
+                if (wrapper) wrapper.classList.remove('playing');
+                if (overlay) overlay.style.display = 'flex';
+                saveCurrentProgress();
+            });
+
+            video.addEventListener('timeupdate', () => {
+                if (video.duration && progressBar) {
+                    const percent = (video.currentTime / video.duration) * 100;
+                    progressBar.style.width = `${percent}%`;
+                }
             });
 
             video.addEventListener('ended', () => {
-                overlay.style.display = 'flex';
-                const tool = videoId.replace('video', '').toLowerCase();
-                showToast(`Tapos na ang video! Pwede mo nang markahan ang ${tool.toUpperCase()} bilang completed.`);
+                if (wrapper) wrapper.classList.remove('playing');
+                if (overlay) overlay.style.display = 'flex';
+                progressBar.style.width = '100%';
+                saveCurrentProgress();
+
+                if (!videoWatchedStatus[toolName]) {
+                    markVideoComplete(toolName);
+                    showToast(`🎉 Tapos na ang video! Awtomatikong namarkahan bilang tapos.`, true);
+                }
+            });
+
+            // Save progress on page unload
+            window.addEventListener('beforeunload', () => {
+                if (video.currentTime && video.duration) {
+                    videoProgress[toolName] = (video.currentTime / video.duration) * 100;
+                    saveVideoStatus();
+                }
             });
         }
 
         setupVideoPlayer('videoAutodraw', 'autodraw');
         setupVideoPlayer('videoDreamina', 'dreamina');
 
-        // Dark Mode Toggle
         let isDarkMode = localStorage.getItem('sketchTheme') === 'dark';
 
         function applyDarkMode() {
@@ -445,6 +778,8 @@
         document.querySelectorAll('video').forEach(video => {
             video.pause();
         });
+
+        loadVideoStatus();
     </script>
 </body>
 
